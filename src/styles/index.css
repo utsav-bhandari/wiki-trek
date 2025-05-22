@@ -1,3 +1,23 @@
 @import "base.css";
-@import "../components/Header/Header.css";
-@import "../components/SearchBar/SearchBar.css";
+
+form {
+    margin: 0 auto;
+    inline-size: fit-content;
+}
+
+header {
+    border: 3px solid red;
+    text-align: center;
+}
+
+form {
+    border: 3px solid blue;
+}
+
+main {
+    border: 3px solid black;
+}
+
+.ph {
+    border: 3px solid salmon;
+}

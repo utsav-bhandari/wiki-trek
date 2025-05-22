@@ -1,12 +1,12 @@
-import Header from "./components/Header/Header";
-import SearchBar from "./components/SearchBar/SearchBar";
+import Header from "./components/Header";
+import Main from "./components/Main";
 
 function WikiTrek() {
     console.log("RENDERING APP...");
     return (
         <>
             <Header />
-            <SearchBar />
+            <Main />
         </>
     );
 }
