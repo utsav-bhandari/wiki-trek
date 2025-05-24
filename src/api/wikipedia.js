@@ -1,4 +1,4 @@
-import { TEST_OBJ } from "../lib/constants";
+import { BIG_TEST_OBJ } from "../lib/constants";
 
 export const DEFAULT_PARAMS_LINKS_SEARCH = {
     action: "parse",
@@ -15,7 +15,7 @@ export const getWikiLinks = async (params) => {
 
     // debug or styling purposes
     await new Promise((res) => setTimeout(res, 1000));
-    return TEST_OBJ;
+    return BIG_TEST_OBJ;
 
     // const url = new URL(API_URL);
     // url.search = new URLSearchParams(params).toString();

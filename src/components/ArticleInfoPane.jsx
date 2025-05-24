@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ArticleLinks({ pageInfo }) {
+function ArticleInfoPane({ pageInfo }) {
     console.log("RENDERING ARTICLELINKS...");
     const { title, pageId, linksArray } = pageInfo;
 
@@ -16,4 +16,4 @@ function ArticleLinks({ pageInfo }) {
     );
 }
 
-export default ArticleLinks;
+export default ArticleInfoPane;

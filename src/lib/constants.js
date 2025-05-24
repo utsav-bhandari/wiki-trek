@@ -1,6 +1,21 @@
 // export const API_URL = "https://httpbin.org/get";
 
-export const TEST_OBJ = {
+export const SMALL_TEST_OBJ = {
+    parse: {
+        title: "42",
+        pageid: 14985539,
+        redirects: [],
+        links: [
+            {
+                ns: 1,
+                title: "Talk:42",
+                exists: true,
+            },
+        ],
+    },
+};
+
+export const BIG_TEST_OBJ = {
     parse: {
         title: "42",
         pageid: 14985539,

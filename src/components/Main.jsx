@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "./SearchBar";
-import ArticleLinks from "./ArticleLinks";
+import ArticleInfoPane from "./ArticleInfoPane";
 import { getWikiLinks, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
 
 function Main() {
@@ -17,7 +17,7 @@ function Main() {
         error,
         isLoading,
     } = useQuery({
-        queryKey: ["links", title.toLowerCase()],
+        queryKey: ["links", title.toLowerCase()], // lowercased for consistency
         queryFn: () =>
             getWikiLinks({ ...DEFAULT_PARAMS_LINKS_SEARCH, page: title }),
         enabled: title.length > 0,
@@ -26,6 +26,7 @@ function Main() {
         refetchOnWindowFocus: false,
     });
 
+    // triggers useQuery
     function handleSearch(formData) {
         const query = formData.get("search");
         if (query) setTitle(query);
@@ -36,7 +37,7 @@ function Main() {
             <SearchBar onSearch={handleSearch} isLoading={isLoading} />
             {isLoading && <div>Loading...</div>}
             {error && <div>Error fetching data: {error.message}</div>}
-            {pageInfo && <ArticleLinks pageInfo={pageInfo.parse} />}
+            {pageInfo && <ArticleInfoPane pageInfo={pageInfo.parse} />}
         </main>
     );
 }
