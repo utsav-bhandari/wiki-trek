@@ -6,7 +6,6 @@ export const DEFAULT_PARAMS_LINKS_SEARCH = {
     prop: "links",
     formatversion: "2",
     origin: "*",
-    redirects: "1",
 };
 
 const API_URL = "https://en.wikipedia.org/w/api.php";
@@ -18,8 +17,8 @@ export const getWikiLinks = async (params) => {
     // return new Promise((res, rej) =>
     //     rej(new Error("Simulated error for testing"))
     // );
-    return SMALL_TEST_OBJ;
-    // return BIG_TEST_OBJ;
+    // return SMALL_TEST_OBJ;
+    return BIG_TEST_OBJ;
 
     // actual logic
     // const url = new URL(API_URL);

@@ -1,11 +1,15 @@
-function ArticleInfo() {
+const wikiUrl = new URL("https://en.wikipedia.org/wiki/");
+
+function ArticleInfo({ title }) {
     return (
         <div>
-            <a href="#">Icon to wiki page</a>
-            <button>Click for preview</button>
+            <a href={`${wikiUrl}${title}`} target="_blank">
+                Icon to wiki page
+            </a>
+            <button>{title}</button>
             <a href="#">Further links</a>
         </div>
     );
 }
 
-export default ArticleLink;
+export default ArticleInfo;

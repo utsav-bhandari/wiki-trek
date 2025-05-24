@@ -9,13 +9,13 @@ function Main() {
 
     // state vars
     const [titles, setTitles] = useState([]);
-    console.log(titles.length);
 
     // pageInfo is {parse:{title, pageid, links}}
     // this triggers when title "mutates"
     const qKey = titles.length
         ? titles[titles.length - 1].toLowerCase() // lowercased for consistency
         : undefined;
+    console.log(qKey);
     const {
         data: pageInfo,
         error,
