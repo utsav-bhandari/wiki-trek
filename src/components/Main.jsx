@@ -2,18 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "./SearchBar";
 import ArticleLinks from "./ArticleLinks";
-import { API_URL, DEFAULT_PARAMS_LINKS_SEARCH } from "../lib/constants";
-
-const getWikiLinks = async (params) => {
-    console.log("FETCHING...");
-
-    const url = new URL(API_URL);
-    url.search = new URLSearchParams(params).toString();
-    const links_endpoint = url.toString();
-
-    const res = await fetch(links_endpoint);
-    return res.json();
-};
+import { getWikiLinks, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
 
 function Main() {
     console.log("RENDERING MAIN...");
@@ -22,6 +11,7 @@ function Main() {
     const [title, setTitle] = useState("");
 
     // pageInfo is {parse:{title, pageid, links}}
+    // this triggers when title "mutates"
     const {
         data: pageInfo,
         error,
