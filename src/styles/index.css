@@ -1,5 +1,9 @@
 @import "base.css";
 
+button {
+    cursor: pointer;
+}
+
 form {
     margin: 0 auto;
     inline-size: fit-content;
@@ -21,3 +25,15 @@ main {
 .ph {
     border: 3px solid salmon;
 }
+
+.artcl-info-cntnr {
+    display: flex;
+    align-items: center;
+    border: 2px solid seagreen;
+    padding: 4px;
+    gap: 3px;
+}
+
+/* .frthr-lnks-btn {
+    border: none;
+} */
