@@ -18,13 +18,13 @@ export const getWikiLinks = async (params) => {
     //     rej(new Error("Simulated error for testing"))
     // );
     // return SMALL_TEST_OBJ;
-    return BIG_TEST_OBJ;
+    // return BIG_TEST_OBJ;
 
     // actual logic
-    // const url = new URL(API_URL);
-    // url.search = new URLSearchParams(params).toString();
-    // const links_endpoint = url.toString();
+    const url = new URL(API_URL);
+    url.search = new URLSearchParams(params).toString();
+    const links_endpoint = url.toString();
 
-    // const res = await fetch(links_endpoint);
-    // return res.json();
+    const res = await fetch(links_endpoint);
+    return res.json();
 };

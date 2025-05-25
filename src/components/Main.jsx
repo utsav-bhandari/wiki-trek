@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "./SearchBar";
 import ArticleInfoPane from "./ArticleInfoPane";
@@ -9,13 +9,15 @@ function Main() {
 
     // state vars
     const [titles, setTitles] = useState([]);
+    const [curPageIdx, setCurPageIdx] = useState(0);
 
-    // pageInfo is {parse:{title, pageid, links}}
-    // this triggers when title "mutates"
-    const qKey = titles.length
-        ? titles[titles.length - 1].toLowerCase() // lowercased for consistency
-        : undefined;
+    const qKey =
+        titles.length > 0
+            ? titles[curPageIdx].toLowerCase() // lowercased for consistency
+            : undefined;
     console.log(qKey);
+    // pageInfo is {parse:{title, pageid, links}}
+    // this triggers when titles "mutates"
     const {
         data: pageInfo,
         error,
@@ -25,7 +27,7 @@ function Main() {
         queryFn: () =>
             getWikiLinks({
                 ...DEFAULT_PARAMS_LINKS_SEARCH,
-                page: titles[titles.length - 1],
+                page: titles[curPageIdx],
             }),
         enabled: titles.length > 0,
         retry: false,
@@ -33,10 +35,23 @@ function Main() {
         refetchOnWindowFocus: false,
     });
 
-    // triggers useQuery, also resets titles array
+    // triggers useQuery <- resets titles array and curPageIdx
     function handleSearch(formData) {
         const query = formData.get("search");
-        if (query) setTitles([query]);
+        if (query) {
+            setTitles([query]);
+            setCurPageIdx(0);
+        }
+    }
+
+    function loadFurtherLinks(clickedTitle) {
+        console.log(clickedTitle, curPageIdx);
+        // pages after current title's are cleared if they exist
+        setTitles((prevTitles) => [
+            ...prevTitles.slice(0, curPageIdx + 1),
+            clickedTitle,
+        ]);
+        setCurPageIdx((prevIdx) => prevIdx + 1);
     }
 
     return (
@@ -44,7 +59,12 @@ function Main() {
             <SearchBar onSearch={handleSearch} isLoading={isLoading} />
             {isLoading && <div>Loading...</div>}
             {error && <div>Error fetching data: {error.message}</div>}
-            {pageInfo && <ArticleInfoPane pageInfo={pageInfo.parse} />}
+            {pageInfo && (
+                <ArticleInfoPane
+                    onLoadFurtherLinks={loadFurtherLinks}
+                    pageInfo={pageInfo.parse}
+                />
+            )}
         </main>
     );
 }

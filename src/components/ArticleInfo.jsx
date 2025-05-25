@@ -1,13 +1,18 @@
 const wikiUrl = new URL("https://en.wikipedia.org/wiki/");
 
-function ArticleInfo({ title }) {
+function ArticleInfo({ onLoadFurtherLinks, title }) {
     return (
-        <div>
+        <div className="artcl-info-cntnr">
             <a href={`${wikiUrl}${title}`} target="_blank">
-                Icon to wiki page
+                Icon
             </a>
             <button>{title}</button>
-            <a href="#">Further links</a>
+            <button
+                className="frthr-lnks-btn"
+                onClick={() => onLoadFurtherLinks(title)}
+            >
+                further links
+            </button>
         </div>
     );
 }
