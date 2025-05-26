@@ -17,8 +17,8 @@ export const getWikiLinks = async (params) => {
     // return new Promise((res, rej) =>
     //     rej(new Error("Simulated error for testing"))
     // );
-    // return Math.random() > 0.5 ? SMALL_TEST_OBJ : BIG_TEST_OBJ;
-    return SMALL_TEST_OBJ;
+    return Math.random() > 0.5 ? SMALL_TEST_OBJ : BIG_TEST_OBJ;
+    // return SMALL_TEST_OBJ;
     // return BIG_TEST_OBJ;
 
     // actual logic

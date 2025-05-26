@@ -6,7 +6,9 @@ function ArticleInfo({ onLoadFurtherLinks, title }) {
             <a href={`${wikiUrl}${title}`} target="_blank">
                 Icon
             </a>
-            <button>{title}</button>
+            <button className="title-btn" title={title}>
+                {title}
+            </button>
             <button
                 className="frthr-lnks-btn"
                 onClick={() => onLoadFurtherLinks(title)}

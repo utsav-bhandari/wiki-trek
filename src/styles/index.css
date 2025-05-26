@@ -7,15 +7,12 @@ button {
 form {
     margin: 0 auto;
     inline-size: fit-content;
+    border: 3px solid blue;
 }
 
 header {
     border: 3px solid red;
     text-align: center;
-}
-
-form {
-    border: 3px solid blue;
 }
 
 main {
@@ -32,6 +29,13 @@ main {
     border: 2px solid seagreen;
     padding: 4px;
     gap: 3px;
+}
+
+.title-btn {
+    inline-size: 30ch;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* .frthr-lnks-btn {
