@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ArticleInfo from "./ArticleInfo";
 
 function ArticleInfoPane({ onLoadFurtherLinks, pageInfo }) {
@@ -17,8 +16,7 @@ function ArticleInfoPane({ onLoadFurtherLinks, pageInfo }) {
 
     return (
         <section className="ph">
-            <div>Links here:</div>
-            <h1>{pageTitle}</h1>
+            <h2>{pageTitle}</h2>
             {allLinks}
         </section>
     );

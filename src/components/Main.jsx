@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "./SearchBar";
 import ArticleInfoPane from "./ArticleInfoPane";
@@ -9,13 +9,14 @@ function Main() {
 
     // state vars
     const [titles, setTitles] = useState([]);
-    const [curPageIdx, setCurPageIdx] = useState(0);
+    const [curPageIdx, setCurPageIdx] = useState(undefined);
 
     const qKey =
         titles.length > 0
             ? titles[curPageIdx].toLowerCase() // lowercased for consistency
             : undefined;
-    console.log(qKey);
+    console.log(titles);
+    console.log("qkey: ", qKey, " page no: ", curPageIdx);
     // pageInfo is {parse:{title, pageid, links}}
     // this triggers when titles "mutates"
     const {
@@ -27,7 +28,7 @@ function Main() {
         queryFn: () =>
             getWikiLinks({
                 ...DEFAULT_PARAMS_LINKS_SEARCH,
-                page: titles[curPageIdx],
+                page: curPageIdx ? titles[curPageIdx] : undefined,
             }),
         enabled: titles.length > 0,
         retry: false,
@@ -45,12 +46,13 @@ function Main() {
     }
 
     function loadFurtherLinks(clickedTitle) {
-        console.log(clickedTitle, curPageIdx);
         // pages after current title's are cleared if they exist
-        setTitles((prevTitles) => [
-            ...prevTitles.slice(0, curPageIdx + 1),
-            clickedTitle,
-        ]);
+
+        setTitles((prevTitles) => {
+            let startToCur = prevTitles.slice(0, curPageIdx + 1);
+            startToCur.push(clickedTitle);
+            return startToCur;
+        });
         setCurPageIdx((prevIdx) => prevIdx + 1);
     }
 

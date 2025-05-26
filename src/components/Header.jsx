@@ -2,7 +2,7 @@ function Header() {
     console.log("RENDERING HEADER...");
     return (
         <header>
-            <h1>Header here</h1>
+            <h1>WikiTrek</h1>
         </header>
     );
 }
