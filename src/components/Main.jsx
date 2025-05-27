@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "./SearchBar";
 import ArticleInfoPane from "./ArticleInfoPane";
-import { getWikiLinks, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
+import WikipediaLinksBySection from "./Test";
+import { DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
 
 function Main() {
     console.log("RENDERING MAIN...");
@@ -59,7 +60,7 @@ function Main() {
 
     return (
         <main>
-            <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+            {/* <SearchBar onSearch={handleSearch} isLoading={isLoading} />
             {isLoading && <div>Loading...</div>}
             {error && <div>Error fetching data: {error.message}</div>}
             {pageInfo && (
@@ -67,7 +68,8 @@ function Main() {
                     onLoadFurtherLinks={loadFurtherLinks}
                     pageInfo={pageInfo.parse}
                 />
-            )}
+            )} */}
+            <WikipediaLinksBySection />
         </main>
     );
 }
