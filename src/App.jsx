@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Header from "./components/Header";
-import WikiLinksBySections from "./components/Test";
+import WikiLinksBySections from "./components/WikiLinksBySections";
 
 const queryClient = new QueryClient();
 
