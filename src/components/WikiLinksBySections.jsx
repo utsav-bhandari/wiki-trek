@@ -5,6 +5,7 @@ import Links from "./Links";
 import { getWikiText, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
 
 function WikiLinksBySections() {
+    console.log("RENDERING MAIN...");
     // state vars
     const [titles, setTitles] = useState([]);
     const [curPageIdx, setCurPageIdx] = useState(undefined);
@@ -54,8 +55,8 @@ function WikiLinksBySections() {
     return (
         <main>
             <SearchBar onSearch={handleSearch} isLoading={isLoading} />
-            {isLoading && <div>Loading...</div>}
             {error && <div>Error fetching data: {error.message}</div>}
+            {isLoading && <div>Loading...</div>}
             {parsedWikiText && <Links wikiText={parsedWikiText} />}
         </main>
     );

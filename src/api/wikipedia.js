@@ -56,6 +56,7 @@ export const DEFAULT_PARAMS_LINKS_SEARCH = {
     formatversion: "2",
     origin: "*",
     format: "json",
+    redirects: 1,
 };
 
 const unrequiredSections = new Set([
@@ -72,14 +73,13 @@ const unrequiredSections = new Set([
     "categories",
     "footnotes",
     "acknowledgements",
-    " other sources",
+    "other sources",
 ]);
 
 const API_URL = "https://en.wikipedia.org/w/api.php";
 // "https://en.wikipedia.org/w/api.php?action=parse&page=Philosophy&prop=text&formatversion=2&origin=*&format=json";
 
 export function getLinksBySection(data) {
-    console.log(data);
     const html = data.parse.text;
     const doc = parseHTML(html);
 
@@ -124,11 +124,26 @@ export function getLinksBySection(data) {
     return [root];
 }
 
+import TEST_OBJ from "../lib/constants";
+
 export async function getWikiText(params) {
+    console.log("FETCHING...");
+    // return TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();
     const linksEndpoint = url.toString();
-    console.log(linksEndpoint);
+
     const res = await fetch(linksEndpoint);
-    return res.json();
+
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    // Check if the response contains an error field (e.g., missing title)
+    if (data.error) {
+        throw new Error(data.error.info);
+    }
+
+    return data;
 }

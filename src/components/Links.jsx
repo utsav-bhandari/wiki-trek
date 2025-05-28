@@ -1,13 +1,9 @@
 import { getLinksBySection } from "../api/wikipedia";
 
 function Links({ wikiText }) {
+    console.log("RENDERING LINKS...");
     const sections = getLinksBySection(wikiText);
-    return (
-        <div>
-            <h1>Links by Sections ({sections[0].title})</h1>
-            {sections.map(renderSection)}
-        </div>
-    );
+    return <div>{sections.map(renderSection)}</div>;
 }
 
 const renderSection = (section) => (
