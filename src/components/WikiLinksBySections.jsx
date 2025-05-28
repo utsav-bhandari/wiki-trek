@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "./SearchBar";
-import ArticleInfoPane from "./ArticleInfoPane";
-import { getWikiLinks, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
+import Links from "./Links";
+import { getWikiText, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
 
-function Main() {
-    console.log("RENDERING MAIN...");
-
+function WikiLinksBySections() {
     // state vars
     const [titles, setTitles] = useState([]);
     const [curPageIdx, setCurPageIdx] = useState(undefined);
@@ -15,21 +13,18 @@ function Main() {
         titles.length > 0
             ? titles[curPageIdx].toLowerCase() // lowercased for consistency
             : undefined;
-    console.log(titles);
     console.log("qkey: ", qKey, " page no: ", curPageIdx);
 
-    // pageInfo is {parse:{title, pageid, links}}
-    // this triggers when titles "mutates"
     const {
-        data: pageInfo,
+        data: parsedWikiText,
         error,
         isLoading,
     } = useQuery({
-        queryKey: ["links", qKey],
+        queryKey: ["wikiText", qKey],
         queryFn: () =>
-            getWikiLinks({
+            getWikiText({
                 ...DEFAULT_PARAMS_LINKS_SEARCH,
-                page: curPageIdx ? titles[curPageIdx] : undefined,
+                page: titles.length > 0 ? titles[curPageIdx] : undefined,
             }),
         enabled: titles.length > 0,
         retry: false,
@@ -37,7 +32,6 @@ function Main() {
         refetchOnWindowFocus: false,
     });
 
-    // triggers useQuery <- resets titles array and curPageIdx
     function handleSearch(formData) {
         const query = formData.get("search");
         if (query) {
@@ -62,14 +56,9 @@ function Main() {
             <SearchBar onSearch={handleSearch} isLoading={isLoading} />
             {isLoading && <div>Loading...</div>}
             {error && <div>Error fetching data: {error.message}</div>}
-            {pageInfo && (
-                <ArticleInfoPane
-                    onLoadFurtherLinks={loadFurtherLinks}
-                    pageInfo={pageInfo.parse}
-                />
-            )}
+            {parsedWikiText && <Links wikiText={parsedWikiText} />}
         </main>
     );
 }
 
-export default Main;
+export default WikiLinksBySections;

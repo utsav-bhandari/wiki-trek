@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Header from "./components/Header";
-import Main from "./components/Main";
+import WikiLinksBySections from "./components/Test";
 
 const queryClient = new QueryClient();
 
@@ -10,7 +10,7 @@ function WikiTrek() {
         <>
             <Header />
             <QueryClientProvider client={queryClient}>
-                <Main />
+                <WikiLinksBySections />
             </QueryClientProvider>
         </>
     );
