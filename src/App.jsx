@@ -1,16 +1,14 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import WikiLinksBySections from "./components/WikiLinksBySections";
+import ArticleLinksContainer from "./components/ArticleLinksContainer";
 
 const queryClient = new QueryClient();
 
 function WikiTrek() {
     console.log("RENDERING APP...");
     return (
-        <>
-            <QueryClientProvider client={queryClient}>
-                <WikiLinksBySections />
-            </QueryClientProvider>
-        </>
+        <QueryClientProvider client={queryClient}>
+            <ArticleLinksContainer />
+        </QueryClientProvider>
     );
 }
 

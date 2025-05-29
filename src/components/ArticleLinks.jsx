@@ -1,12 +1,10 @@
-import { getLinksBySection } from "../api/wikipedia";
-
 const wikiUrl = "https://en.wikipedia.org";
 
-function Links({ wikiText }) {
+function ArticleLinks({ linksBySection }) {
     console.log("RENDERING LINKS...");
-    const sections = getLinksBySection(wikiText);
-    console.log(sections);
-    return <div>{sections.map(renderSection)}</div>;
+
+    // console.log(sections);
+    return <div>{linksBySection.map(renderSection)}</div>;
 }
 
 const renderSection = (section) => (
@@ -23,7 +21,7 @@ const renderSection = (section) => (
                     <a
                         href={`${wikiUrl}${link.href}`}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noreferrer"
                     >
                         {link.text}
                     </a>
@@ -34,4 +32,4 @@ const renderSection = (section) => (
     </div>
 );
 
-export default Links;
+export default ArticleLinks;

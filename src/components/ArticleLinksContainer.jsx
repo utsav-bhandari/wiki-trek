@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Header from "./Header";
-import Links from "./Links";
-import { getWikiText, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
+import ArticleLinks from "./ArticleLinks";
+import ContentSidebar from "./ContentSidebar";
+import {
+    getWikiText,
+    getLinksBySection,
+    DEFAULT_PARAMS_LINKS_SEARCH,
+} from "../api/wikipedia";
 
-function WikiLinksBySections() {
+function ArticleLinksContainer() {
     console.log("RENDERING MAIN...");
     // state vars
     const [titles, setTitles] = useState([]);
@@ -33,6 +38,9 @@ function WikiLinksBySections() {
         refetchOnWindowFocus: false,
     });
 
+    const linksBySection = getLinksBySection(parsedWikiText);
+    console.log(linksBySection);
+
     function handleSearch(formData) {
         const query = formData.get("search");
         if (query) {
@@ -58,10 +66,12 @@ function WikiLinksBySections() {
             <main>
                 {error && <h2>Error fetching data: {error.message}</h2>}
                 {isLoading && <div>Loading...</div>}
-                {parsedWikiText && <Links wikiText={parsedWikiText} />}
+                {parsedWikiText && (
+                    <ArticleLinks linksBySection={linksBySection} />
+                )}
             </main>
         </>
     );
 }
 
-export default WikiLinksBySections;
+export default ArticleLinksContainer;
