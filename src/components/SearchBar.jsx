@@ -10,7 +10,7 @@ function SearchBar({ onSearch, isLoading }) {
                 placeholder="Search Wikipedia"
             />
             <button type="submit" disabled={isLoading}>
-                Search svg here
+                svg
             </button>
         </form>
     );

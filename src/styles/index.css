@@ -2,17 +2,27 @@
 
 button {
     cursor: pointer;
-}
-
-form {
-    margin: 0 auto;
-    inline-size: fit-content;
-    border: 3px solid blue;
+    /* -webkit-appearance: none; */
+    /* appearance: button; */
 }
 
 header {
     border: 3px solid red;
-    text-align: center;
+    display: flex;
+    background-color: beige;
+    justify-content: space-between;
+}
+
+h1 {
+    background-color: aquamarine;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+form {
+    border: 3px solid green;
+    display: flex;
+    align-items: center;
 }
 
 main {

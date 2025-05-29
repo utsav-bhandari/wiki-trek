@@ -19,7 +19,8 @@ function trimStackToLevel(stack, level) {
 }
 
 function isContentTag(tag) {
-    return tag === "p" || tag === "ul" || tag === "ol";
+    const validTags = ["p", "ul", "ol", "tbody"];
+    return validTags.includes(tag);
 }
 
 function extractLinksFromElement(el) {
@@ -82,12 +83,14 @@ const API_URL = "https://en.wikipedia.org/w/api.php";
 export function getLinksBySection(data) {
     const html = data.parse.text;
     const doc = parseHTML(html);
-
-    const root = createSection(data.parse.title, 1);
+    // const root = createSection(data.parse.title, 1);
+    const root = createSection("Introduction", 1);
     const stack = [root];
     let shouldSkipLinks = false;
 
-    const elements = doc.querySelectorAll("h2, h3, h4, h5, h6, p, ul, ol");
+    const elements = doc.querySelectorAll(
+        "h2, h3, h4, h5, h6, p, ul, ol, tbody" // hardcoded but eh for now
+    );
 
     elements.forEach((el) => {
         const tag = el.tagName.toLowerCase();

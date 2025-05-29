@@ -1,8 +1,11 @@
 import { getLinksBySection } from "../api/wikipedia";
 
+const wikiUrl = "https://en.wikipedia.org";
+
 function Links({ wikiText }) {
     console.log("RENDERING LINKS...");
     const sections = getLinksBySection(wikiText);
+    console.log(sections);
     return <div>{sections.map(renderSection)}</div>;
 }
 
@@ -18,7 +21,7 @@ const renderSection = (section) => (
             {section.links.map((link, i) => (
                 <li key={i}>
                     <a
-                        href={`https://en.wikipedia.org${link.href}`}
+                        href={`${wikiUrl}${link.href}`}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
