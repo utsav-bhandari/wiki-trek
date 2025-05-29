@@ -1,5 +1,13 @@
 @import "base.css";
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: sans-serif;
+}
+
 button {
     cursor: pointer;
     /* -webkit-appearance: none; */
@@ -17,6 +25,7 @@ h1 {
     background-color: aquamarine;
     margin-inline-start: auto;
     margin-inline-end: auto;
+    /* font-family: ; */
 }
 
 form {
@@ -27,10 +36,56 @@ form {
 
 main {
     border: 3px solid black;
+    display: grid;
+    grid-template-columns: 12.25rem 1fr;
+    column-gap: 24px;
+    padding-inline: 2.75rem;
 }
 
-.ph {
-    border: 3px solid salmon;
+a {
+    text-decoration: none;
+    color: #36c;
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+
+.content-sidebar {
+    position: sticky;
+    top: 40px;
+    max-block-size: calc(100vh - (40px * 2));
+    overflow: hidden auto;
+    font-size: 0.875rem;
+    margin-block-start: 2.8rem;
+    line-height: 1.1rem;
+}
+
+.sidebar-header {
+    border-bottom: 1px solid #eaecf0;
+    margin-inline-start: 12px;
+}
+
+.sidebar-list {
+    padding: 0 16px;
+}
+
+#sidebar-top {
+    padding: 6px 0px;
+}
+
+.sidebar-list li {
+    list-style: none;
+    padding: 6px 0px;
+}
+
+.sidebar-sublist {
+    padding: 0px;
+}
+
+.sidebar-sublist li {
+    padding: 6px 0px 6px 12px;
 }
 
 .artcl-info-cntnr {
