@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Header from "./Header";
-import ArticleLinks from "./ArticleLinks";
-import ContentSidebar from "./ContentSidebar";
+import ArticleLinksBySections from "./ArticleLinksBySections";
+import ContentSideBar from "./ContentSideBar";
 import {
     getWikiText,
     getLinksBySection,
     DEFAULT_PARAMS_LINKS_SEARCH,
 } from "../api/wikipedia";
 
-function ArticleLinksContainer() {
+function Main() {
     console.log("RENDERING MAIN...");
     // state vars
     const [titles, setTitles] = useState([]);
@@ -66,12 +66,15 @@ function ArticleLinksContainer() {
             <main>
                 {error && <h2>Error fetching data: {error.message}</h2>}
                 {isLoading && <div>Loading...</div>}
-                {parsedWikiText && (
-                    <ArticleLinks linksBySection={linksBySection} />
+                {linksBySection && (
+                    <ContentSideBar linksBySection={linksBySection} />
+                )}
+                {linksBySection && (
+                    <ArticleLinksBySections linksBySection={linksBySection} />
                 )}
             </main>
         </>
     );
 }
 
-export default ArticleLinksContainer;
+export default Main;

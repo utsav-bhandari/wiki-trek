@@ -81,6 +81,7 @@ const API_URL = "https://en.wikipedia.org/w/api.php";
 // "https://en.wikipedia.org/w/api.php?action=parse&page=Philosophy&prop=text&formatversion=2&origin=*&format=json";
 
 export function getLinksBySection(data) {
+    if (!data) return undefined;
     const html = data.parse.text;
     const doc = parseHTML(html);
     // const root = createSection(data.parse.title, 1);
@@ -127,11 +128,12 @@ export function getLinksBySection(data) {
     return [root];
 }
 
-import TEST_OBJ from "../lib/constants";
+import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
-    // return TEST_OBJ;
+    return BIG_TEST_OBJ;
+    // return SMALL_TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();
     const linksEndpoint = url.toString();
