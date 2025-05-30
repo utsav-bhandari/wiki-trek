@@ -1,7 +1,9 @@
 @import "base.css";
 
-html {
-    scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -10,8 +12,9 @@ body {
 
 button {
     cursor: pointer;
-    /* -webkit-appearance: none; */
-    /* appearance: button; */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 header {
@@ -31,7 +34,7 @@ h1 {
 form {
     border: 3px solid green;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
 main {
@@ -42,13 +45,22 @@ main {
     padding-inline: 2.75rem;
 }
 
-a {
+a,
+a:link {
     text-decoration: none;
     color: #36c;
 }
 
-a:hover,
-a:focus {
+a:visited {
+    color: #6a60b0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    color: #233566;
     text-decoration: underline;
 }
 
@@ -106,3 +118,14 @@ a:focus {
 /* .frthr-lnks-btn {
     border: none;
 } */
+
+@media (width <= 600px) {
+    main {
+        display: block;
+        padding-inline: 0px;
+    }
+
+    .content-sidebar {
+        display: none;
+    }
+}

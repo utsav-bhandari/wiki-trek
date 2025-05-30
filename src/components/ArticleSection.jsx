@@ -15,11 +15,7 @@ const ArticleSection = ({ section }) => {
             <ul>
                 {section.links.map((link, i) => (
                     <li key={i}>
-                        <a
-                            href={`${wikiUrl}${link.href}`}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
+                        <a href={`${wikiUrl}${link.href}`} target="_blank">
                             {link.text}
                         </a>
                     </li>
