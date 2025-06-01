@@ -132,8 +132,8 @@ import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
-    return BIG_TEST_OBJ;
-    // return SMALL_TEST_OBJ;
+    // return BIG_TEST_OBJ;
+    return SMALL_TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();
     const linksEndpoint = url.toString();
@@ -150,5 +150,6 @@ export async function getWikiText(params) {
         throw new Error(data.error.info);
     }
 
-    return data;
+    // cache with calculation duh!
+    return getLinksBySection(data);
 }

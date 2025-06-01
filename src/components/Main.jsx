@@ -22,7 +22,8 @@ function Main() {
     console.log("qkey: ", qKey, " page no: ", curPageIdx);
 
     const {
-        data: parsedWikiText,
+        // data: parsedWikiText,
+        data: linksBySection,
         error,
         isLoading,
     } = useQuery({
@@ -37,8 +38,6 @@ function Main() {
         staleTime: Infinity,
         refetchOnWindowFocus: false,
     });
-
-    const linksBySection = getLinksBySection(parsedWikiText);
     console.log(linksBySection);
 
     function handleSearch(formData) {
@@ -63,9 +62,9 @@ function Main() {
     return (
         <>
             <Header onSearch={handleSearch} isLoading={isLoading} />
+            {error && <h2>Error fetching data: {error.message}</h2>}
+            {isLoading && <div>Loading...</div>}
             <main>
-                {error && <h2>Error fetching data: {error.message}</h2>}
-                {isLoading && <div>Loading...</div>}
                 {linksBySection && (
                     <ContentSideBar linksBySection={linksBySection} />
                 )}
