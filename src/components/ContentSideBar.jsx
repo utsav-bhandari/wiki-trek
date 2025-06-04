@@ -7,7 +7,7 @@ function ContentSideBar({ linksBySection }) {
     const articleHeader = topSection.title;
 
     return (
-        <div className="sticky-sidebar-wrapper">
+        <div id="sticky-sidebar-wrapper">
             <nav className="content-sidebar">
                 <div className="sidebar-header">
                     <h2>Contents</h2>

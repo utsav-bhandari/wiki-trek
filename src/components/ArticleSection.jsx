@@ -1,35 +1,28 @@
-const wikiUrl = "https://en.wikipedia.org";
+import { wikiUrl } from "../api/wikipedia";
 
-const ArticleSection = ({ section }) => {
+function ArticleSection({ section }) {
     return (
-        <div
-            key={section.title}
-            style={{ marginLeft: `${(section.level - 1) * 20}px` }}
-        >
-            <h2
-                id={section.title}
-                style={{ fontSize: `${2.2 - (section.level - 1) * 0.2}em` }}
-            >
-                {section.title}
-            </h2>
-            <ul>
-                {section.links.map((link, i) => (
-                    <li key={i}>
-                        <a href={`${wikiUrl}${link.href}`} target="_blank">
-                            {link.text}
-                        </a>
-                    </li>
+        <article>
+            <details>
+                <summary>{section.title}</summary>
+                <ul id={section.title}>
+                    {section.links.map((link, i) => (
+                        <li key={i}>
+                            <a href={`${wikiUrl}${link.href}`} target="_blank">
+                                {link.text}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+                {section.children.map((childSection) => (
+                    <ArticleSection
+                        key={childSection.title}
+                        section={childSection}
+                    />
                 ))}
-            </ul>
-            {/* Recursively render child sections */}
-            {section.children.map((childSection) => (
-                <ArticleSection
-                    key={childSection.title}
-                    section={childSection}
-                />
-            ))}
-        </div>
+            </details>
+        </article>
     );
-};
+}
 
 export default ArticleSection;
