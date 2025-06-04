@@ -1,6 +1,6 @@
 import { wikiUrl } from "../api/wikipedia";
 
-function ArticleSection({ section }) {
+function ArticleSection({ section, recurse }) {
     return (
         <article>
             <details>
@@ -14,12 +14,14 @@ function ArticleSection({ section }) {
                         </li>
                     ))}
                 </ul>
-                {section.children.map((childSection) => (
-                    <ArticleSection
-                        key={childSection.title}
-                        section={childSection}
-                    />
-                ))}
+                {recurse &&
+                    section.children.map((childSection) => (
+                        <ArticleSection
+                            key={childSection.title}
+                            section={childSection}
+                            recurse={true}
+                        />
+                    ))}
             </details>
         </article>
     );
