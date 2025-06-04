@@ -6,6 +6,11 @@
     }
 }
 
+@font-face {
+    font-family: "Linux Libertine";
+    src: url("../assets/LinLibertine_R.otf");
+}
+
 body {
     font-family: sans-serif;
 }
@@ -95,10 +100,17 @@ a:active {
     padding: 6px 0px 6px 12px;
 }
 
-details:not([open]) ul {
-    overflow: hidden;
-    height: auto;
-    max-height: 0px;
+summary {
+    border-bottom: 1px solid #dadde3;
+    padding: 0.5em 0;
+    margin-block-end: 12px;
+    cursor: pointer;
+}
+
+summary h2 {
+    font-weight: 400;
+    display: inline;
+    font-family: "Linux Libertine", Georgia, "Times New Roman", Times, serif;
 }
 
 .artcl-info-cntnr {
@@ -119,10 +131,9 @@ details:not([open]) ul {
 @media (width <= 600px) {
     main {
         display: block;
-        padding-inline: 0px;
     }
 
-    .content-sidebar {
+    #sticky-sidebar-wrapper {
         display: none;
     }
 }
