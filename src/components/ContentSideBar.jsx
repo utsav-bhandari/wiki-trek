@@ -9,14 +9,13 @@ function ContentSideBar({ linksBySection }) {
     return (
         <div id="sticky-sidebar-wrapper">
             <nav className="content-sidebar">
-                <div className="sidebar-header">
+                <header className="sidebar-header">
                     <h2>Contents</h2>
-                </div>
+                </header>
                 <ul className="sidebar-list">
-                    <div id="sidebar-top">
+                    <li>
                         <a href="#">(Top)</a>
-                    </div>
-                    {/* Render the top-level items using SideBarItem */}
+                    </li>
                     {topSection.children.map((section) => (
                         <SideBarItem key={section.title} section={section} />
                     ))}
