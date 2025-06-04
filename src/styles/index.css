@@ -12,9 +12,9 @@ body {
 
 button {
     cursor: pointer;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
+    appearance: none; */
 }
 
 header {
@@ -28,7 +28,6 @@ h1 {
     background-color: aquamarine;
     margin-inline-start: auto;
     margin-inline-end: auto;
-    /* font-family: ; */
 }
 
 form {
@@ -39,10 +38,10 @@ form {
 
 main {
     border: 3px solid black;
+    padding-inline-start: 2.75rem;
     display: grid;
     grid-template-columns: 12.25rem 1fr;
     column-gap: 24px;
-    padding-inline: 2.75rem;
 }
 
 a,
@@ -115,10 +114,6 @@ a:active {
     white-space: nowrap;
 }
 
-/* .frthr-lnks-btn {
-    border: none;
-} */
-
 @media (width <= 600px) {
     main {
         display: block;
@@ -127,5 +122,11 @@ a:active {
 
     .content-sidebar {
         display: none;
+    }
+}
+
+@media (width <= 900px) {
+    main {
+        padding-inline: 0px;
     }
 }

@@ -1,3 +1,16 @@
+const API_URL = "https://en.wikipedia.org/w/api.php";
+
+export const DEFAULT_PARAMS_LINKS_SEARCH = {
+    action: "parse",
+    prop: "text",
+    formatversion: "2",
+    origin: "*",
+    format: "json",
+    redirects: 1,
+};
+
+export const wikiUrl = "https://en.wikipedia.org";
+
 function parseHTML(html) {
     const parser = new DOMParser();
     return parser.parseFromString(html, "text/html");
@@ -51,15 +64,6 @@ function extractLinksFromElement(el) {
         .filter(Boolean); // filter truthy hack
 }
 
-export const DEFAULT_PARAMS_LINKS_SEARCH = {
-    action: "parse",
-    prop: "text",
-    formatversion: "2",
-    origin: "*",
-    format: "json",
-    redirects: 1,
-};
-
 const unrequiredSections = new Set([
     "references",
     "citations",
@@ -76,9 +80,6 @@ const unrequiredSections = new Set([
     "acknowledgements",
     "other sources",
 ]);
-
-const API_URL = "https://en.wikipedia.org/w/api.php";
-// "https://en.wikipedia.org/w/api.php?action=parse&page=Philosophy&prop=text&formatversion=2&origin=*&format=json";
 
 export function getLinksBySection(data) {
     if (!data) return undefined;
@@ -132,8 +133,8 @@ import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
-    // return BIG_TEST_OBJ;
-    return SMALL_TEST_OBJ;
+    return BIG_TEST_OBJ;
+    // return SMALL_TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();
     const linksEndpoint = url.toString();
