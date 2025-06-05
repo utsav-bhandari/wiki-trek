@@ -3,7 +3,7 @@ import { wikiUrl } from "../api/wikipedia";
 function ArticleSection({ section, recurse }) {
     return (
         <article>
-            <details name={section.level}>
+            <details name={section.level} data-level={section.level}>
                 <summary className="links-summary" id={section.title}>
                     <h2>{section.title}</h2>
                 </summary>

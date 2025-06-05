@@ -6,7 +6,7 @@ function ArticleLinksBySections({ linksBySection }) {
     const introSection = linksBySection[0];
     introSection.level = 2; // i have no excuses lol
     return (
-        <section>
+        <section className="links-sectn">
             {/* intro section */}
             <ArticleSection
                 key={introSection.title}

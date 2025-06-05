@@ -114,6 +114,27 @@ a:active {
     -webkit-details-marker: none;
 }
 
+details[data-level="2"][open] {
+    background-color: hsla(216deg 4% 74% / 0.2);
+    border: 2px solid hsl(0deg 0% 0% / 20%);
+}
+
+details[data-level="3"][open] {
+    background-color: hsl(216deg 4.01% 73.64% / 0.2);
+}
+
+details[data-level="4"][open] {
+    background-color: hsl(216deg 4.01% 73.64% / 0.2);
+}
+
+details[data-level="5"][open] {
+    background-color: hsl(216deg 4.01% 73.64% / 0.15);
+}
+
+details[data-level="6"][open] {
+    background-color: hsl(216deg 4.01% 73.64% / 0.1);
+}
+
 .links-summary {
     border-bottom: 1px solid #dadde3;
     padding: 0.5em 0;
@@ -173,4 +194,10 @@ details[open] > .links-summary::before {
     main {
         padding-inline: 0px;
     }
+}
+
+details[level]:not([level="1"]) > summary::before {
+    content: "│";
+    margin-right: 8px;
+    color: #aaa;
 }
