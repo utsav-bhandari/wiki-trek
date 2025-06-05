@@ -4,7 +4,6 @@ function ContentSideBar({ linksBySection }) {
     console.log("RENDERING CONTENT SIDEBAR...");
 
     const topSection = linksBySection[0];
-    const articleHeader = topSection.title;
 
     return (
         <div id="sticky-sidebar-wrapper">

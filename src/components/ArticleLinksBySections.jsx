@@ -1,10 +1,10 @@
 import ArticleSection from "./ArticleSection";
-import { wikiUrl } from "../api/wikipedia";
 
 function ArticleLinksBySections({ linksBySection }) {
     console.log("RENDERING LINKS_BY_SECTIONS...");
 
     const introSection = linksBySection[0];
+    introSection.level = 2; // i have no excuses lol
     return (
         <section>
             {/* intro section */}

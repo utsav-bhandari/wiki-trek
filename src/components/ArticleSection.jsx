@@ -3,9 +3,11 @@ import { wikiUrl } from "../api/wikipedia";
 function ArticleSection({ section, recurse }) {
     return (
         <article>
-            <details>
-                <summary>{section.title}</summary>
-                <ul id={section.title}>
+            <details name={section.level}>
+                <summary className="links-summary" id={section.title}>
+                    <h2>{section.title}</h2>
+                </summary>
+                <ul>
                     {section.links.map((link, i) => (
                         <li key={i}>
                             <a href={`${wikiUrl}${link.href}`} target="_blank">
