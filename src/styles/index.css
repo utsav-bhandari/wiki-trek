@@ -100,14 +100,45 @@ a:active {
     padding: 6px 0px 6px 12px;
 }
 
-summary {
+.sidebar-list summary {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='12px' viewBox='0 -960 960 960' width='12px' fill='%23202122'%3E%3Cpath d='m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z'/%3E%3C/svg%3E");
+    list-style-position: outside;
+}
+
+.sidebar-list details[open] > summary {
+    list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 20 20" fill="%23000"><path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/></svg>');
+}
+
+.sidebar-list details:not(:has(ul)) summary {
+    list-style: none;
+    -webkit-details-marker: none;
+}
+
+.links-summary {
     border-bottom: 1px solid #dadde3;
     padding: 0.5em 0;
     margin-block-end: 12px;
     cursor: pointer;
+    list-style: none;
+    display: flex;
 }
 
-summary h2 {
+.links-summary::before {
+    content: "";
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 -5 20 20" fill="%23000"><path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/></svg>');
+    background-size: cover;
+    inline-size: 16px;
+    block-size: 16px;
+    margin-inline-end: 0.5em;
+    transition: 0.2s;
+}
+
+details[open] > .links-summary::before {
+    /* translate for svg offset bs */
+    transform: rotate(180deg) translateY(-5px);
+}
+
+.links-summary h2 {
     font-weight: 400;
     display: inline;
     font-family: "Linux Libertine", Georgia, "Times New Roman", Times, serif;
