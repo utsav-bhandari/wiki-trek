@@ -1,7 +1,7 @@
 function SideBarItem({ section }) {
     return (
         <li key={section.title}>
-            <details>
+            <details id={`nav-${section.title}`}>
                 <summary>
                     <a href={`#${section.title}`}>{section.title}</a>
                 </summary>

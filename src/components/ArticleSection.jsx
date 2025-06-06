@@ -1,9 +1,20 @@
 import { wikiUrl } from "../api/wikipedia";
 
 function ArticleSection({ section, recurse }) {
+    function handleToggle({ newState, target }) {
+        const open = newState === "open" ? true : false;
+        const sideBarDetails = document.getElementById(
+            `nav-${target.firstChild.id}`
+        );
+        sideBarDetails.open = open;
+    }
     return (
         <article>
-            <details name={section.level} data-level={section.level}>
+            <details
+                onToggle={handleToggle}
+                name={section.level}
+                data-level={section.level}
+            >
                 <summary className="links-summary" id={section.title}>
                     <h2>{section.title}</h2>
                 </summary>
