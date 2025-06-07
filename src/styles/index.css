@@ -43,7 +43,7 @@ form {
 
 main {
     border: 3px solid black;
-    padding-inline-start: 2.75rem;
+    padding-inline: 2.75rem;
     display: grid;
     grid-template-columns: 12.25rem 1fr;
     column-gap: 24px;
@@ -80,11 +80,12 @@ a:active {
 
 .sidebar-header {
     border-bottom: 1px solid #eaecf0;
-    margin-inline-start: 12px;
+    /* magic number: list padding + ::before size + margin */
+    margin-inline-start: calc(16px + 12px + 7px);
 }
 
 .sidebar-list {
-    padding: 0 16px;
+    padding-inline: 16px;
 }
 
 .sidebar-list li {

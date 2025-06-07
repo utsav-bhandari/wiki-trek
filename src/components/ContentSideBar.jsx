@@ -12,11 +12,19 @@ function ContentSideBar({ linksBySection }) {
                     <h2>Contents</h2>
                 </header>
                 <ul className="sidebar-list">
-                    <li>
-                        <a href="#">(Top)</a>
-                    </li>
+                    {/* intro item */}
+                    <SideBarItem
+                        key={topSection.title}
+                        section={topSection}
+                        recurse={false}
+                    />
+
                     {topSection.children.map((section) => (
-                        <SideBarItem key={section.title} section={section} />
+                        <SideBarItem
+                            key={section.title}
+                            section={section}
+                            recurse={true}
+                        />
                     ))}
                 </ul>
             </nav>

@@ -4,7 +4,8 @@ function ArticleLinksBySections({ linksBySection }) {
     console.log("RENDERING LINKS_BY_SECTIONS...");
 
     const introSection = linksBySection[0];
-    introSection.level = 2; // i have no excuses lol
+    // mutating bad but ehhhhhhhh
+    introSection.level = 2; // top section should be the same heirarchy as h2s
     return (
         <section className="links-sectn">
             {/* intro section */}
