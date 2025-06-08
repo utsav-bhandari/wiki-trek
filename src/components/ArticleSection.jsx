@@ -7,6 +7,7 @@ function ArticleSection({ section, recurse }) {
             `nav-${target.firstChild.id}`
         );
         sideBarDetails.open = open;
+        if (open) target.scrollIntoView();
     }
     return (
         <article>
