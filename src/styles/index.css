@@ -125,7 +125,7 @@ a:active {
 }
 
 details[data-level="2"][open] {
-    background-color: hsla(216deg 4% 74% / 0.1);
+    background-color: hsl(216deg 4.01% 73.64% / 0.1);
     border: 2px solid hsl(0deg 0% 0% / 20%);
 }
 
@@ -175,6 +175,31 @@ details[open] > .links-summary::before {
     font-family: "Linux Libertine", Georgia, "Times New Roman", Times, serif;
 }
 
+article ul {
+    list-style: none;
+    padding: 0px 10px 10px;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+article ul li {
+    padding: 7px;
+    background-color: #eaecf0;
+    border-radius: 4px;
+    flex: 1 1 auto;
+    max-inline-size: 300px;
+    text-align: center;
+    /* overflow-wrap: break-word; */
+}
+
+article ul li a {
+    color: black;
+}
+
 .artcl-info-cntnr {
     display: flex;
     align-items: center;
@@ -204,10 +229,4 @@ details[open] > .links-summary::before {
     main {
         padding-inline: 0px;
     }
-}
-
-details[level]:not([level="1"]) > summary::before {
-    content: "│";
-    margin-right: 8px;
-    color: #aaa;
 }

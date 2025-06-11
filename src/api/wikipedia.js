@@ -36,6 +36,10 @@ function isContentTag(tag) {
     return validTags.includes(tag);
 }
 
+function isIrrelevantLink(href) {
+    return !href || href.startsWith("#") || href.includes(":");
+}
+
 function extractLinksFromElement(el) {
     const wikiPathRegex = /^\/wiki\/(.*)$/;
 
@@ -43,8 +47,7 @@ function extractLinksFromElement(el) {
         .map((link) => {
             const href = link.getAttribute("href");
             const text = link.textContent.trim();
-
-            if (!href || href.startsWith("#") || !text) return null;
+            if (isIrrelevantLink(href)) return null;
 
             let displayText = text;
             const match = href.match(wikiPathRegex);
@@ -85,6 +88,7 @@ export function getLinksBySection(data) {
     if (!data) return undefined;
     const html = data.parse.text;
     const doc = parseHTML(html);
+    console.log(doc);
     // const root = createSection(data.parse.title, 1);
     const root = createSection("Introduction", 1);
     const stack = [root];
@@ -93,12 +97,22 @@ export function getLinksBySection(data) {
     const elements = doc.querySelectorAll(
         "h2, h3, h4, h5, h6, p, ul, ol, tbody" // hardcoded but eh for now
     );
+    let tempLinks = [];
 
+    const headerRegex = /^h[2-6]$/;
     elements.forEach((el) => {
         const tag = el.tagName.toLowerCase();
 
         // is header
-        if (/^h[2-6]$/.test(tag)) {
+        if (headerRegex.test(tag)) {
+            // sort by text length for a complete header section
+            if (tempLinks.length > 0) {
+                tempLinks.sort(
+                    (link1, link2) => link1.text.length - link2.text.length
+                );
+                stack[stack.length - 1].links.push(...tempLinks);
+            }
+            tempLinks = [];
             const heading = el.textContent.trim();
             if (!heading) return;
 
@@ -122,7 +136,9 @@ export function getLinksBySection(data) {
             shouldSkipLinks = false;
         } else if (isContentTag(tag) && !shouldSkipLinks) {
             const links = extractLinksFromElement(el);
-            stack[stack.length - 1].links.push(...links);
+            tempLinks.push(...links);
+            // const links = extractLinksFromElement(el);
+            // stack[stack.length - 1].links.push(...links);
         }
     });
 
@@ -133,7 +149,7 @@ import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
-    return BIG_TEST_OBJ;
+    // return BIG_TEST_OBJ;
     // return SMALL_TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();
