@@ -1,14 +1,19 @@
-import { wikiUrl } from "../api/wikipedia";
+// src/components/ArticleSection.js
 
-function ArticleSection({ section, recurse }) {
+import { wikiUrl } from "../api/wikipedia";
+import { OutLink } from "./Svg";
+
+// Accept the new handler props
+function ArticleSection({ section, recurse, onLinkHover, onLinkLeave }) {
     function handleToggle({ newState, target }) {
-        const open = newState === "open" ? true : false;
+        const open = newState === "open";
         const sideBarDetails = document.getElementById(
             `nav-${target.firstChild.id}`
         );
         sideBarDetails.open = open;
         if (open) target.scrollIntoView();
     }
+
     return (
         <article>
             <details
@@ -22,9 +27,16 @@ function ArticleSection({ section, recurse }) {
                 <ul>
                     {section.links.map((link, i) => (
                         <li key={i}>
-                            <a href={`${wikiUrl}${link.href}`} target="_blank">
-                                {link.text}
+                            <a
+                                href={`${wikiUrl}${link.href}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onMouseEnter={(e) => onLinkHover(e, link.href)}
+                                onMouseLeave={onLinkLeave}
+                            >
+                                <OutLink />
                             </a>
+                            <button>{link.text}</button>
                         </li>
                     ))}
                 </ul>
@@ -34,6 +46,8 @@ function ArticleSection({ section, recurse }) {
                             key={childSection.title}
                             section={childSection}
                             recurse={true}
+                            onLinkHover={onLinkHover}
+                            onLinkLeave={onLinkLeave}
                         />
                     ))}
             </details>
