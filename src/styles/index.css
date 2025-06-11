@@ -17,9 +17,10 @@ body {
 
 button {
     cursor: pointer;
-    /* -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none; */
+    /* -webkit-appearance: none; */
+    /* -moz-appearance: none; */
+    /* appearance: none; */
+    color: black;
 }
 
 .main-header {
@@ -193,7 +194,8 @@ article ul li {
     flex: 1 1 auto;
     max-inline-size: 300px;
     text-align: center;
-    /* overflow-wrap: break-word; */
+    display: flex;
+    align-items: center;
 }
 
 article ul li a {
@@ -229,4 +231,10 @@ article ul li a {
     main {
         padding-inline: 0px;
     }
+}
+
+.out-link {
+    height: 14px;
+    width: 14px;
+    fill: #36c;
 }
