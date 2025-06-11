@@ -11,13 +11,6 @@ function WikiPreview({
         return null;
     }
 
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
-    if (error) {
-        return <p style={{ color: "red" }}>{error.message}</p>;
-    }
-
     const style = {
         position: "fixed",
         top: `${position.y}px`,
@@ -35,29 +28,48 @@ function WikiPreview({
         overflowY: "auto",
     };
 
+    const renderContent = () => {
+        if (isLoading) {
+            return <p>Loading...</p>;
+        }
+        if (error) {
+            return <p style={{ color: "red" }}>{error.message}</p>;
+        }
+        if (data) {
+            return (
+                <>
+                    <h4 style={{ margin: 0, fontSize: "1rem" }}>
+                        {data.title}
+                    </h4>
+                    {data.thumbnail && (
+                        <img
+                            src={data.thumbnail.source}
+                            alt={data.title}
+                            style={{
+                                width: "100px",
+                                float: "right",
+                                marginLeft: "1rem",
+                                marginBottom: "0.5rem",
+                            }}
+                        />
+                    )}
+                    <p
+                        dangerouslySetInnerHTML={{ __html: data.extract_html }}
+                        style={{ fontSize: "0.875rem", margin: 0 }}
+                    />
+                </>
+            );
+        }
+        return null;
+    };
+
     return (
         <div
             style={style}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
-            <h4 style={{ margin: 0, fontSize: "1rem" }}>{data.title}</h4>
-            {data.thumbnail && (
-                <img
-                    src={data.thumbnail.source}
-                    alt={data.title}
-                    style={{
-                        width: "100px",
-                        float: "right",
-                        marginLeft: "1rem",
-                        marginBottom: "0.5rem",
-                    }}
-                />
-            )}
-            <p
-                dangerouslySetInnerHTML={{ __html: data.extract_html }}
-                style={{ fontSize: "0.875rem", margin: 0 }}
-            />
+            {renderContent()}
         </div>
     );
 }

@@ -67,7 +67,10 @@ function Main() {
                     <ContentSideBar linksBySection={linksBySection} />
                 )}
                 {linksBySection && (
-                    <ArticleLinksBySections linksBySection={linksBySection} />
+                    <ArticleLinksBySections
+                        linksBySection={linksBySection}
+                        onTitleClick={loadFurtherLinks}
+                    />
                 )}
             </main>
         </>

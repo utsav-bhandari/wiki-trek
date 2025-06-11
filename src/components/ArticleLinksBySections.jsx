@@ -11,7 +11,7 @@ const CURSOR_OFFSET = 20;
 
 const HIDE_DELAY = 300;
 
-function ArticleLinksBySections({ linksBySection }) {
+function ArticleLinksBySections({ linksBySection, onTitleClick }) {
     // A single state object to track the hovered article's title and its position
     const [hoveredArticle, setHoveredArticle] = useState({
         title: null,
@@ -112,6 +112,7 @@ function ArticleLinksBySections({ linksBySection }) {
                 recurse={false}
                 onLinkHover={showPreview}
                 onLinkLeave={scheduleHide}
+                onTitleClick={onTitleClick}
             />
 
             {/* Render the rest of the sections */}
@@ -122,6 +123,7 @@ function ArticleLinksBySections({ linksBySection }) {
                     recurse={true}
                     onLinkHover={showPreview}
                     onLinkLeave={scheduleHide}
+                    onTitleClick={onTitleClick}
                 />
             ))}
         </section>

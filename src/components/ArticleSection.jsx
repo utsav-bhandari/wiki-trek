@@ -4,7 +4,13 @@ import { wikiUrl } from "../api/wikipedia";
 import { OutLink } from "./Svg";
 
 // Accept the new handler props
-function ArticleSection({ section, recurse, onLinkHover, onLinkLeave }) {
+function ArticleSection({
+    section,
+    recurse,
+    onLinkHover,
+    onLinkLeave,
+    onTitleClick,
+}) {
     function handleToggle({ newState, target }) {
         const open = newState === "open";
         const sideBarDetails = document.getElementById(
@@ -30,13 +36,23 @@ function ArticleSection({ section, recurse, onLinkHover, onLinkLeave }) {
                             <a
                                 href={`${wikiUrl}${link.href}`}
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noopener"
                                 onMouseEnter={(e) => onLinkHover(e, link.href)}
                                 onMouseLeave={onLinkLeave}
                             >
                                 <OutLink />
                             </a>
-                            <button>{link.text}</button>
+                            <button
+                                onClick={() =>
+                                    onTitleClick(
+                                        link.href.substring(
+                                            link.href.lastIndexOf("/") + 1
+                                        )
+                                    )
+                                }
+                            >
+                                {link.text}
+                            </button>
                         </li>
                     ))}
                 </ul>
@@ -48,6 +64,7 @@ function ArticleSection({ section, recurse, onLinkHover, onLinkLeave }) {
                             recurse={true}
                             onLinkHover={onLinkHover}
                             onLinkLeave={onLinkLeave}
+                            onTitleClick={onTitleClick}
                         />
                     ))}
             </details>

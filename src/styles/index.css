@@ -202,21 +202,6 @@ article ul li a {
     color: black;
 }
 
-.artcl-info-cntnr {
-    display: flex;
-    align-items: center;
-    border: 2px solid seagreen;
-    padding: 4px;
-    gap: 3px;
-}
-
-.title-btn {
-    inline-size: 30ch;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
 @media (width <= 600px) {
     main {
         display: block;
