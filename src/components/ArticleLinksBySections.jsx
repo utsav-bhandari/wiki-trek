@@ -40,7 +40,11 @@ function ArticleLinksBySections({ linksBySection }) {
         return { y: top, x: left };
     };
 
-    const { isLoading, isError, data, error } = useQuery({
+    const {
+        data: previewContent,
+        error,
+        isLoading,
+    } = useQuery({
         queryKey: ["wikiSummary", hoveredArticle.title?.toLowerCase()],
         queryFn: () => getWikiSummary(hoveredArticle.title),
         // the query will only execute when a title is present.
@@ -49,15 +53,6 @@ function ArticleLinksBySections({ linksBySection }) {
         cacheTime: 1000 * 60 * 3, // Inactive data is kept for 3 minutes
         retry: 1,
     });
-
-    // Sets the hovered article details when the mouse enters a link
-    const handleLinkHover = useCallback((e, href) => {
-        const title = href.substring(href.lastIndexOf("/") + 1);
-        setHoveredArticle({
-            title,
-            position: calculateOptimalPosition(e),
-        });
-    }, []);
 
     // Create a ref to hold the timer ID for hiding the tooltip
     const hideTimerRef = useRef(null);
@@ -94,8 +89,9 @@ function ArticleLinksBySections({ linksBySection }) {
     // The WikiPreview is only visible when an article title is set in our state.
     const isVisible = !!hoveredArticle.title;
 
+    // top level should be the same as h2s
     const introSection = linksBySection[0];
-    introSection.level = 2;
+    introSection.level = 2; // bad mutation but necessary, don't wanna spread big objects
 
     return (
         <section className="links-sectn">
@@ -103,9 +99,8 @@ function ArticleLinksBySections({ linksBySection }) {
                 isVisible={isVisible}
                 position={hoveredArticle.position}
                 isLoading={isLoading}
-                isError={isError}
                 error={error}
-                data={data}
+                data={previewContent}
                 onMouseEnter={() => clearTimeout(hideTimerRef.current)}
                 onMouseLeave={scheduleHide}
             />

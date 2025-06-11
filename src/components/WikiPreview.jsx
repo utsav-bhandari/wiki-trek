@@ -2,7 +2,6 @@ function WikiPreview({
     isVisible,
     position,
     isLoading,
-    isError,
     error,
     data,
     onMouseEnter,
@@ -33,7 +32,7 @@ function WikiPreview({
         if (isLoading) {
             return <p>Loading...</p>;
         }
-        if (isError) {
+        if (error) {
             return <p style={{ color: "red" }}>{error.message}</p>;
         }
         if (data) {
