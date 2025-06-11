@@ -38,14 +38,11 @@ function Main() {
         staleTime: Infinity,
         refetchOnWindowFocus: false,
     });
-    console.log(linksBySection);
 
     function handleSearch(formData) {
         const query = formData.get("search");
-        if (query) {
-            setTitles([query]);
-            setCurPageIdx(0);
-        }
+        setTitles([query]);
+        setCurPageIdx(0);
     }
 
     function loadFurtherLinks(clickedTitle) {
@@ -58,6 +55,7 @@ function Main() {
         });
         setCurPageIdx((prevIdx) => prevIdx + 1);
     }
+    console.log(linksBySection);
 
     return (
         <>

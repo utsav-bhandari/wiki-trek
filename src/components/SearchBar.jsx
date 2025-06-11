@@ -8,6 +8,7 @@ function SearchBar({ onSearch, isLoading }) {
                 autoComplete="off"
                 name="search"
                 placeholder="Search Wikipedia"
+                required
             />
             <button type="submit" disabled={isLoading}>
                 img
