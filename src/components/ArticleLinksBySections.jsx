@@ -53,6 +53,7 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
         cacheTime: 1000 * 60 * 3, // Inactive data is kept for 3 minutes
         retry: 1,
     });
+    console.log(previewContent);
 
     // Create a ref to hold the timer ID for hiding the tooltip
     const hideTimerRef = useRef(null);

@@ -145,12 +145,17 @@ export function getLinksBySection(data) {
     return [root];
 }
 
-import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
+import {
+    SMALL_TEST_OBJ,
+    BIG_TEST_OBJ,
+    PREVIEW_TEST_OBJ,
+} from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
-    return BIG_TEST_OBJ;
+    // return BIG_TEST_OBJ;
     // return SMALL_TEST_OBJ;
+    return Math.random() > 0.5 ? BIG_TEST_OBJ : SMALL_TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();
     const linksEndpoint = url.toString();
@@ -173,6 +178,7 @@ export async function getWikiText(params) {
 
 export async function getWikiSummary(title) {
     console.log("FETCHING PREVIEW...");
+    return PREVIEW_TEST_OBJ;
     if (!title) return null; // Don't fetch if there's no title
 
     const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
