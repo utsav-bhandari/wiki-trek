@@ -1,5 +1,10 @@
 @import "base.css";
 
+:root {
+    --navigator-height: 80px;
+    --dtls-highlight-clr: hsl(216deg 4.01% 73.64% / 0.1);
+}
+
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
@@ -44,7 +49,7 @@ form {
 
 main {
     border: 3px solid black;
-    padding-inline: 2.75rem;
+    padding: 0px 2.75rem var(--navigator-height);
     display: grid;
     grid-template-columns: 12.25rem 1fr;
     column-gap: 24px;
@@ -126,24 +131,24 @@ a:active {
 }
 
 details[data-level="2"][open] {
-    background-color: hsl(216deg 4.01% 73.64% / 0.1);
+    background-color: var(--dtls-highlight-clr);
     border: 2px solid hsl(0deg 0% 0% / 20%);
 }
 
 details[data-level="3"][open] {
-    background-color: hsl(216deg 4.01% 73.64% / 0.1);
+    background-color: var(--dtls-highlight-clr);
 }
 
 details[data-level="4"][open] {
-    background-color: hsl(216deg 4.01% 73.64% / 0.1);
+    background-color: var(--dtls-highlight-clr);
 }
 
 details[data-level="5"][open] {
-    background-color: hsl(216deg 4.01% 73.64% / 0.1);
+    background-color: var(--dtls-highlight-clr);
 }
 
 details[data-level="6"][open] {
-    background-color: hsl(216deg 4.01% 73.64% / 0.1);
+    background-color: var(--dtls-highlight-clr);
 }
 
 .links-summary {
@@ -202,6 +207,56 @@ article ul li a {
     color: black;
 }
 
+.page-navigator {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f0f0f0;
+    border-top: 1px solid #d1d1d1;
+    padding: 1rem;
+    block-size: var(--navigator-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.page-navigator button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+.page-navigator button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.page-navigator button:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.page-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #333;
+}
+
+.page-info .page-title {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.25rem;
+}
+
 @media (width <= 600px) {
     main {
         display: block;
@@ -209,6 +264,23 @@ article ul li a {
 
     #sticky-sidebar-wrapper {
         display: none;
+    }
+
+    .page-navigator {
+        padding: 0.5rem;
+    }
+
+    .page-navigator button {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .page-info {
+        font-size: 0.8rem;
+    }
+
+    .page-info .page-title {
+        font-size: 0.7rem;
     }
 }
 

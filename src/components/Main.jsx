@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Header from "./Header";
-import ArticleLinksBySections from "./ArticleLinksBySections";
 import ContentSideBar from "./ContentSideBar";
+import ArticleLinksBySections from "./ArticleLinksBySections";
+import PageNavigator from "./PageNavigator";
 import {
     getWikiText,
     getLinksBySection,
@@ -55,6 +56,31 @@ function Main() {
         });
         setCurPageIdx((prevIdx) => prevIdx + 1);
     }
+
+    function handlePrevPage() {
+        if (curPageIdx > 0) {
+            // reset url
+            history.pushState(
+                "",
+                document.title,
+                window.location.pathname + window.location.search
+            );
+            setCurPageIdx((prevIdx) => prevIdx - 1);
+        }
+    }
+
+    function handleNextPage() {
+        if (curPageIdx < titles.length - 1) {
+            // reset url
+            history.pushState(
+                "",
+                document.title,
+                window.location.pathname + window.location.search
+            );
+            setCurPageIdx((prevIdx) => prevIdx + 1);
+        }
+    }
+
     console.log(linksBySection);
 
     return (
@@ -73,6 +99,15 @@ function Main() {
                     />
                 )}
             </main>
+            {titles.length > 1 && (
+                <PageNavigator
+                    onPrev={handlePrevPage}
+                    onNext={handleNextPage}
+                    currentPage={curPageIdx + 1}
+                    totalPages={titles.length}
+                    currentPageTitle={titles[curPageIdx]}
+                />
+            )}
         </>
     );
 }
