@@ -40,8 +40,9 @@ function isIrrelevantLink(href) {
     return !href || href.startsWith("#") || href.includes(":");
 }
 
+import { extractTitleFromWikiHref } from "../lib/utils";
 function extractLinksFromElement(el) {
-    const wikiPathRegex = /^\/wiki\/(.*)$/;
+    // const wikiPathRegex = /^\/wiki\/(.*)$/;
 
     return Array.from(el.querySelectorAll("a[href]"))
         .map((link) => {
@@ -50,17 +51,11 @@ function extractLinksFromElement(el) {
             if (isIrrelevantLink(href)) return null;
 
             let displayText = text;
-            const match = href.match(wikiPathRegex);
-
-            if (match && match[1]) {
-                const decodedHref = decodeURIComponent(match[1]).replace(
-                    /_/g,
-                    " "
-                );
-                if (decodedHref.length > text.length) {
-                    displayText = decodedHref;
-                }
-            }
+            const decodedHref = extractTitleFromWikiHref(href).replace(
+                /_/g,
+                " "
+            );
+            if (decodedHref.length > text.length) displayText = decodedHref;
 
             return { href, text: displayText };
         })
@@ -89,8 +84,8 @@ export function getLinksBySection(data) {
     const html = data.parse.text;
     const doc = parseHTML(html);
     console.log(doc);
-    // const root = createSection(data.parse.title, 1);
-    const root = createSection("Introduction", 1);
+    const root = createSection(data.parse.title, 1);
+    // const root = createSection("Introduction", 1);
     const stack = [root];
     let shouldSkipLinks = false;
 
@@ -155,7 +150,7 @@ export async function getWikiText(params) {
     console.log("FETCHING...");
     // return BIG_TEST_OBJ;
     // return SMALL_TEST_OBJ;
-    return Math.random() > 0.5 ? BIG_TEST_OBJ : SMALL_TEST_OBJ;
+    // return Math.random() > 0.5 ? BIG_TEST_OBJ : SMALL_TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();
     const linksEndpoint = url.toString();
@@ -177,8 +172,8 @@ export async function getWikiText(params) {
 }
 
 export async function getWikiSummary(title) {
-    console.log("FETCHING PREVIEW...");
-    return PREVIEW_TEST_OBJ;
+    console.log("FETCHING PREVIEW OF ", title);
+    // return PREVIEW_TEST_OBJ;
     if (!title) return null; // Don't fetch if there's no title
 
     const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;

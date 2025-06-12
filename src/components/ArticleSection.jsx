@@ -2,10 +2,12 @@
 
 import { wikiUrl } from "../api/wikipedia";
 import { OutLink } from "./Svg";
+import { determineSectionHref } from "../lib/utils";
 
 // Accept the new handler props
 function ArticleSection({
     section,
+    pageTitle,
     recurse,
     onLinkHover,
     onLinkLeave,
@@ -28,7 +30,18 @@ function ArticleSection({
                 data-level={section.level}
             >
                 <summary className="links-summary" id={section.title}>
-                    <h2>{section.title}</h2>
+                    <a
+                        href={determineSectionHref(
+                            !recurse,
+                            pageTitle,
+                            section.title
+                        )}
+                        style={{ color: "black" }}
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <h2>{recurse ? section.title : "Introduction"}</h2>
+                    </a>
                 </summary>
                 <ul>
                     {section.links.map((link, i) => (
@@ -42,15 +55,7 @@ function ArticleSection({
                             >
                                 <OutLink />
                             </a>
-                            <button
-                                onClick={() =>
-                                    onTitleClick(
-                                        link.href.substring(
-                                            link.href.lastIndexOf("/") + 1
-                                        )
-                                    )
-                                }
-                            >
+                            <button onClick={() => onTitleClick(link.href)}>
                                 {link.text}
                             </button>
                         </li>
@@ -61,6 +66,7 @@ function ArticleSection({
                         <ArticleSection
                             key={childSection.title}
                             section={childSection}
+                            pageTitle={pageTitle}
                             recurse={true}
                             onLinkHover={onLinkHover}
                             onLinkLeave={onLinkLeave}

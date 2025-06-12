@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import ArticleSection from "./ArticleSection";
 import WikiPreview from "./WikiPreview";
 import { getWikiSummary } from "../api/wikipedia";
+import { extractTitleFromWikiHref } from "../lib/utils";
 
 // from WikiPreview
 const PREVIEW_WIDTH = 350;
@@ -53,7 +54,6 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
         cacheTime: 1000 * 60 * 3, // Inactive data is kept for 3 minutes
         retry: 1,
     });
-    console.log(previewContent);
 
     // Create a ref to hold the timer ID for hiding the tooltip
     const hideTimerRef = useRef(null);
@@ -72,7 +72,7 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
         // ALWAYS clear a pending hide timer when showing a new preview
         clearTimeout(hideTimerRef.current);
 
-        const title = href.substring(href.lastIndexOf("/") + 1);
+        const title = extractTitleFromWikiHref(href);
         setHoveredArticle({
             title,
             position: calculateOptimalPosition(e),
@@ -93,6 +93,7 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
     // top level should be the same as h2s
     const introSection = linksBySection[0];
     introSection.level = 2; // bad mutation but necessary, don't wanna spread big objects
+    const pageTitle = introSection.title;
 
     return (
         <section className="links-sectn">
@@ -110,7 +111,8 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
             <ArticleSection
                 key={introSection.title}
                 section={introSection}
-                recurse={false}
+                pageTitle={pageTitle}
+                recurse={false} // indicates h1 level
                 onLinkHover={showPreview}
                 onLinkLeave={scheduleHide}
                 onTitleClick={onTitleClick}
@@ -121,6 +123,7 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
                 <ArticleSection
                     key={section.title}
                     section={section}
+                    pageTitle={pageTitle}
                     recurse={true}
                     onLinkHover={showPreview}
                     onLinkLeave={scheduleHide}

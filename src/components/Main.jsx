@@ -9,6 +9,7 @@ import {
     getLinksBySection,
     DEFAULT_PARAMS_LINKS_SEARCH,
 } from "../api/wikipedia";
+import { extractTitleFromWikiHref } from "../lib/utils";
 
 function Main() {
     console.log("RENDERING MAIN...");
@@ -46,12 +47,13 @@ function Main() {
         setCurPageIdx(0);
     }
 
-    function loadFurtherLinks(clickedTitle) {
-        // pages after current title's are cleared if they exist
+    function loadFurtherLinks(clickedHref) {
+        const titleFromHref = extractTitleFromWikiHref(clickedHref);
 
+        // pages after current title's are cleared if they exist
         setTitles((prevTitles) => {
             let startToCur = prevTitles.slice(0, curPageIdx + 1);
-            startToCur.push(clickedTitle);
+            startToCur.push(titleFromHref);
             return startToCur;
         });
         setCurPageIdx((prevIdx) => prevIdx + 1);
