@@ -101,7 +101,7 @@ function Main() {
                     />
                 )}
             </main>
-            {titles.length > 1 && (
+            {titles.length > 0 && (
                 <PageNavigator
                     onPrev={handlePrevPage}
                     onNext={handleNextPage}

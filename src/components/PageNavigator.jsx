@@ -17,7 +17,9 @@ function PageNavigator({
                 <span>
                     Page {currentPage} of {totalPages}
                 </span>
-                <span className="page-title">"{currentPageTitle}"</span>
+                <span className="page-title">
+                    "{currentPageTitle.replace(/_/g, " ")}"
+                </span>
             </div>
             <button onClick={onNext} disabled={!canGoNext}>
                 Next &rarr;

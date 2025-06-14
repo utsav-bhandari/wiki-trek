@@ -5,9 +5,9 @@ import WikiPreview from "./WikiPreview";
 import { getWikiSummary } from "../api/wikipedia";
 import { extractTitleFromWikiHref } from "../lib/utils";
 
-// from WikiPreview
-const PREVIEW_WIDTH = 350;
-const PREVIEW_HEIGHT = 300;
+// from WikiPreview.jsx
+const PREVIEW_WIDTH = 450;
+const PREVIEW_HEIGHT = 250;
 const CURSOR_OFFSET = 20;
 
 const HIDE_DELAY = 300;

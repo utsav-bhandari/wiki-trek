@@ -17,7 +17,7 @@ function WikiPreview({
         position: "fixed",
         top: `${position.y}px`,
         left: `${position.x}px`,
-        maxHeight: "300px",
+        maxHeight: "250px",
         backgroundColor: "white",
         border: "1px solid #ccc",
         boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
@@ -49,14 +49,15 @@ function WikiPreview({
                         }}
                     />
                     {data.thumbnail && (
-                        <img
-                            src={data.thumbnail.source}
-                            alt={data.title}
-                            style={{
-                                width: "200px",
-                                height: "250px",
-                            }}
-                        />
+                        <>
+                            <div className="thumbnail-cntnr">
+                                <img
+                                    className="preview-thumbnail"
+                                    src={data.thumbnail.source}
+                                    alt={data.title}
+                                />
+                            </div>
+                        </>
                     )}
                 </>
             );

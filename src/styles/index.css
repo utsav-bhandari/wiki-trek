@@ -110,6 +110,7 @@ a:active {
 .sidebar-list summary {
     list-style: none;
     display: flex;
+    inline-size: fit-content;
 }
 
 .sidebar-list summary::before {
@@ -120,6 +121,7 @@ a:active {
     block-size: 12px;
     margin-inline-end: 0.5em;
     transition: 0.2s;
+    flex: 1 0 auto;
 }
 
 .sidebar-list details[open] > summary::before {
@@ -128,6 +130,21 @@ a:active {
 
 .sidebar-list details:not(:has(ul)) summary::before {
     visibility: hidden;
+}
+
+.preview-thumbnail {
+    object-fit: cover;
+    inline-size: 100%;
+    block-size: 100%;
+}
+
+.preview-thumbnail:hover {
+    object-fit: contain;
+}
+
+.thumbnail-cntnr {
+    inline-size: 200px;
+    block-size: 250px;
 }
 
 details[data-level="2"][open] {
