@@ -3,13 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import ArticleSection from "./ArticleSection";
 import WikiPreview from "./WikiPreview";
 import { getWikiSummary } from "../api/wikipedia";
-import { extractTitleFromWikiHref } from "../lib/utils";
+import { extractTitleFromWikiHref, isMobileDevice } from "../lib/utils";
 
-// from WikiPreview.jsx
-const PREVIEW_WIDTH = 450;
-const PREVIEW_HEIGHT = 250;
+const PREVIEW_THUMBNAIL_DIM = { height: 250, width: 200 };
+const PREVIEW_TEXT_DIM = { height: 210, width: 250 };
 const CURSOR_OFFSET = 20;
-
 const HIDE_DELAY = 300;
 
 function ArticleLinksBySections({ linksBySection, onTitleClick }) {
@@ -18,28 +16,6 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
         title: null,
         position: { x: 0, y: 0 },
     });
-
-    // Helper function to calculate the best position for the preview popup
-    const calculateOptimalPosition = (e) => {
-        let top = e.clientY + CURSOR_OFFSET;
-        let left = e.clientX + CURSOR_OFFSET;
-
-        // Check for right edge collision and flip if necessary
-        if (left + PREVIEW_WIDTH > window.innerWidth) {
-            left = e.clientX - PREVIEW_WIDTH - CURSOR_OFFSET;
-        }
-
-        // Check for bottom edge collision and flip if necessary
-        if (top + PREVIEW_HEIGHT > window.innerHeight) {
-            top = e.clientY - PREVIEW_HEIGHT - CURSOR_OFFSET;
-        }
-
-        // Prevent clipping on the top or left edges as well
-        if (top < 0) top = CURSOR_OFFSET;
-        if (left < 0) left = CURSOR_OFFSET;
-
-        return { y: top, x: left };
-    };
 
     const {
         data: previewContent,
@@ -55,10 +31,41 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
         retry: 1,
     });
 
+    // Helper function to calculate the best position for the preview popup
+    const getClientCoords = (e) => {
+        return { x: e.clientX, y: e.clientY };
+    };
+    // const calculateOptimalPosition = (e) => {
+    //     const previewWidth = previewContent?.thumbnail
+    //         ? PREVIEW_TEXT_DIM.width + PREVIEW_THUMBNAIL_DIM.width
+    //         : PREVIEW_TEXT_DIM.width;
+    //     const previewHeight = PREVIEW_THUMBNAIL_DIM.height;
+    //     let top = e.clientY + CURSOR_OFFSET;
+    //     let left = e.clientX + CURSOR_OFFSET;
+
+    //     // Check for right edge collision and flip if necessary
+    //     if (left + previewWidth > window.innerWidth) {
+    //         left = e.clientX - previewWidth - CURSOR_OFFSET;
+    //     }
+
+    //     // Check for bottom edge collision and flip if necessary
+    //     if (top + previewHeight > window.innerHeight) {
+    //         top = e.clientY - previewHeight - CURSOR_OFFSET;
+    //     }
+
+    //     // Prevent clipping on the top or left edges as well
+    //     if (top < 0) top = CURSOR_OFFSET;
+    //     if (left < 0) left = CURSOR_OFFSET;
+    //     console.log(top, " ", left);
+
+    //     return { y: top, x: left };
+    // };
+
     // Create a ref to hold the timer ID for hiding the tooltip
     const hideTimerRef = useRef(null);
 
     const scheduleHide = useCallback(() => {
+        if (isMobileDevice()) return;
         // clear any existing timer to avoid multiple timers running
         clearTimeout(hideTimerRef.current);
         // set a new timer
@@ -69,13 +76,14 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
 
     // Function to show the tooltip (and cancel any pending hide operations)
     const showPreview = useCallback((e, href) => {
+        if (isMobileDevice()) return;
         // ALWAYS clear a pending hide timer when showing a new preview
         clearTimeout(hideTimerRef.current);
 
         const title = extractTitleFromWikiHref(href);
         setHoveredArticle({
             title,
-            position: calculateOptimalPosition(e),
+            position: getClientCoords(e),
         });
     }, []);
 
