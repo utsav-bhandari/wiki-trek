@@ -3,10 +3,6 @@ import { wikiUrl } from "../api/wikipedia";
 const PREVIEW_THUMBNAIL_DIM = { height: 250, width: 200 };
 const PREVIEW_TEXT_DIM = { height: 210, width: 250 };
 const CURSOR_OFFSET = 20;
-window.onclick = function (e) {
-    var evt = e;
-    console.log("Mouse position (" + evt.clientX + "," + evt.clientY + ")");
-};
 
 function WikiPreview({
     isVisible,
@@ -105,8 +101,9 @@ function WikiPreview({
 
     return (
         <a
-            href={`${wikiUrl}/wiki/${data?.title}`}
+            href={data?.content_urls.desktop.page}
             target="_blank"
+            rel="noopener"
             style={style}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
