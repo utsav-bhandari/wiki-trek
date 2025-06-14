@@ -147,6 +147,10 @@ a:active {
     block-size: 250px;
 }
 
+/* article > details {
+    max-block-size: 600px;
+} */
+
 details[data-level="2"][open] {
     background-color: var(--dtls-highlight-clr);
     border: 2px solid hsl(0deg 0% 0% / 20%);
@@ -198,6 +202,16 @@ details[open] > .links-summary::before {
     font-family: "Linux Libertine", Georgia, "Times New Roman", Times, serif;
 }
 
+a.section-link {
+    color: black;
+    display: flex;
+}
+
+.section-link svg {
+    height: 9px;
+    width: 9px;
+}
+
 article ul {
     list-style: none;
     padding: 0px 10px 10px;
@@ -222,6 +236,12 @@ article ul li {
 
 article ul li a {
     color: black;
+}
+
+.out-link svg {
+    height: 14px;
+    width: 14px;
+    fill: #36c;
 }
 
 .page-navigator {
@@ -272,6 +292,7 @@ article ul li a {
     font-size: 0.9rem;
     color: #555;
     margin-top: 0.25rem;
+    text-transform: capitalize;
 }
 
 @media (width <= 600px) {
@@ -280,7 +301,8 @@ article ul li a {
     }
 
     #sticky-sidebar-wrapper {
-        display: none;
+        position: static;
+        margin-block-start: 1rem;
     }
 
     .page-navigator {
@@ -305,10 +327,4 @@ article ul li a {
     main {
         padding-inline: 0px;
     }
-}
-
-.out-link {
-    height: 14px;
-    width: 14px;
-    fill: #36c;
 }

@@ -24,7 +24,6 @@ function Main() {
     console.log("qkey: ", qKey, " page no: ", curPageIdx);
 
     const {
-        // data: parsedWikiText,
         data: linksBySection,
         error,
         isLoading,

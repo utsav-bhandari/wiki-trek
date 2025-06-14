@@ -42,8 +42,6 @@ function isIrrelevantLink(href) {
 
 import { extractTitleFromWikiHref } from "../lib/utils";
 function extractLinksFromElement(el) {
-    // const wikiPathRegex = /^\/wiki\/(.*)$/;
-
     return Array.from(el.querySelectorAll("a[href]"))
         .map((link) => {
             const href = link.getAttribute("href");

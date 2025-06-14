@@ -31,22 +31,24 @@ function ArticleSection({
             >
                 <summary className="links-summary" id={section.title}>
                     <a
+                        className="section-link"
                         href={determineSectionHref(
                             !recurse,
                             pageTitle,
                             section.title
                         )}
-                        style={{ color: "black" }}
                         target="_blank"
                         rel="noopener"
                     >
                         <h2>{recurse ? section.title : "Introduction"}</h2>
+                        <OutLink />
                     </a>
                 </summary>
                 <ul>
                     {section.links.map((link, i) => (
                         <li key={i}>
                             <a
+                                className="out-link"
                                 href={`${wikiUrl}${link.href}`}
                                 target="_blank"
                                 rel="noopener"
