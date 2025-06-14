@@ -31,35 +31,9 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
         retry: 1,
     });
 
-    // Helper function to calculate the best position for the preview popup
     const getClientCoords = (e) => {
         return { x: e.clientX, y: e.clientY };
     };
-    // const calculateOptimalPosition = (e) => {
-    //     const previewWidth = previewContent?.thumbnail
-    //         ? PREVIEW_TEXT_DIM.width + PREVIEW_THUMBNAIL_DIM.width
-    //         : PREVIEW_TEXT_DIM.width;
-    //     const previewHeight = PREVIEW_THUMBNAIL_DIM.height;
-    //     let top = e.clientY + CURSOR_OFFSET;
-    //     let left = e.clientX + CURSOR_OFFSET;
-
-    //     // Check for right edge collision and flip if necessary
-    //     if (left + previewWidth > window.innerWidth) {
-    //         left = e.clientX - previewWidth - CURSOR_OFFSET;
-    //     }
-
-    //     // Check for bottom edge collision and flip if necessary
-    //     if (top + previewHeight > window.innerHeight) {
-    //         top = e.clientY - previewHeight - CURSOR_OFFSET;
-    //     }
-
-    //     // Prevent clipping on the top or left edges as well
-    //     if (top < 0) top = CURSOR_OFFSET;
-    //     if (left < 0) left = CURSOR_OFFSET;
-    //     console.log(top, " ", left);
-
-    //     return { y: top, x: left };
-    // };
 
     // Create a ref to hold the timer ID for hiding the tooltip
     const hideTimerRef = useRef(null);

@@ -4,11 +4,7 @@ import Header from "./Header";
 import ContentSideBar from "./ContentSideBar";
 import ArticleLinksBySections from "./ArticleLinksBySections";
 import PageNavigator from "./PageNavigator";
-import {
-    getWikiText,
-    getLinksBySection,
-    DEFAULT_PARAMS_LINKS_SEARCH,
-} from "../api/wikipedia";
+import { getWikiText, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
 import { extractTitleFromWikiHref } from "../lib/utils";
 
 function Main() {
