@@ -15,7 +15,6 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
     // top level should be the same as h2s
     const introSection = linksBySection[0];
     introSection.level = 2; // bad mutation but necessary, don't wanna spread big objects
-    const pageTitle = introSection.title;
 
     return (
         <section className="links-sectn">
@@ -23,7 +22,6 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
             <ArticleSection
                 key={introSection.title}
                 section={introSection}
-                pageTitle={pageTitle}
                 recurse={false} // indicates h1 level
                 onTitleClick={onTitleClick}
             />
@@ -33,7 +31,6 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
                 <ArticleSection
                     key={section.title}
                     section={section}
-                    pageTitle={pageTitle}
                     recurse={true}
                     onTitleClick={onTitleClick}
                 />

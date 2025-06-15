@@ -82,8 +82,8 @@ export function getLinksBySection(data) {
     const html = data.parse.text;
     const doc = parseHTML(html);
     console.log(doc);
-    const root = createSection(data.parse.title, 1);
-    // const root = createSection("Introduction", 1);
+    // const root = createSection(data.parse.title, 1);
+    const root = createSection("Introduction", 1);
     const stack = [root];
     let shouldSkipLinks = false;
 
