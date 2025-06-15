@@ -132,25 +132,6 @@ a:active {
     visibility: hidden;
 }
 
-.preview-thumbnail {
-    object-fit: cover;
-    inline-size: 100%;
-    block-size: 100%;
-}
-
-.preview-thumbnail:hover {
-    object-fit: contain;
-}
-
-.thumbnail-cntnr {
-    inline-size: 200px;
-    block-size: 250px;
-}
-
-/* article > details {
-    max-block-size: 600px;
-} */
-
 details[data-level="2"][open] {
     background-color: var(--dtls-highlight-clr);
     border: 2px solid hsl(0deg 0% 0% / 20%);
@@ -327,4 +308,12 @@ article ul li a {
     main {
         padding-inline: 0px;
     }
+}
+
+/* i can't dark mode bruh */
+.wikipediapreview {
+    --wikipediapreview-primary-background-color: #fff !important;
+    --wikipediapreview-secondary-background-color: #fff !important;
+    --wikipediapreview-primary-color: #202122 !important;
+    --wikipediapreview-filter-setting: none !important;
 }

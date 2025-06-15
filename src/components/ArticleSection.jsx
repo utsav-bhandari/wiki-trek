@@ -1,18 +1,8 @@
-// src/components/ArticleSection.js
-
 import { wikiUrl } from "../api/wikipedia";
 import { OutLink } from "./Svg";
 import { determineSectionHref } from "../lib/utils";
 
-// Accept the new handler props
-function ArticleSection({
-    section,
-    pageTitle,
-    recurse,
-    onLinkHover,
-    onLinkLeave,
-    onTitleClick,
-}) {
+function ArticleSection({ section, pageTitle, recurse, onTitleClick }) {
     function handleToggle({ newState, target }) {
         const open = newState === "open";
         const sideBarDetails = document.getElementById(
@@ -46,14 +36,16 @@ function ArticleSection({
                 </summary>
                 <ul>
                     {section.links.map((link, i) => (
-                        <li key={i}>
+                        <li
+                            className="wmf-wp-with-preview"
+                            data-wikipedia-preview
+                            key={i}
+                        >
                             <a
                                 className="out-link"
                                 href={`${wikiUrl}${link.href}`}
                                 target="_blank"
                                 rel="noopener"
-                                onMouseEnter={(e) => onLinkHover(e, link.href)}
-                                onMouseLeave={onLinkLeave}
                             >
                                 <OutLink />
                             </a>
@@ -70,8 +62,6 @@ function ArticleSection({
                             section={childSection}
                             pageTitle={pageTitle}
                             recurse={true}
-                            onLinkHover={onLinkHover}
-                            onLinkLeave={onLinkLeave}
                             onTitleClick={onTitleClick}
                         />
                     ))}

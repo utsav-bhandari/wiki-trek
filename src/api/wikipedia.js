@@ -138,11 +138,7 @@ export function getLinksBySection(data) {
     return [root];
 }
 
-import {
-    SMALL_TEST_OBJ,
-    BIG_TEST_OBJ,
-    PREVIEW_TEST_OBJ,
-} from "../lib/constants";
+import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
@@ -167,17 +163,4 @@ export async function getWikiText(params) {
 
     // cache with calculation duh!
     return getLinksBySection(data);
-}
-
-export async function getWikiSummary(title) {
-    console.log("FETCHING PREVIEW OF ", title);
-    // return PREVIEW_TEST_OBJ;
-    if (!title) return null; // Don't fetch if there's no title
-
-    const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-        throw new Error("Network response was not ok");
-    }
-    return response.json();
 }
