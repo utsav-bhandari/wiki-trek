@@ -1,7 +1,7 @@
 function SideBarItem({ section, recurse }) {
     return (
         <li key={section.title}>
-            <details id={`nav-${section.title}`}>
+            <details id={getSidbarNavItemId(section.title)}>
                 <summary>
                     <a href={`#${section.title}`}>
                         {!recurse ? "(Top)" : section.title}
@@ -22,6 +22,10 @@ function SideBarItem({ section, recurse }) {
             </details>
         </li>
     );
+}
+
+export function getSidbarNavItemId(title) {
+    return `nav-${title}`;
 }
 
 export default SideBarItem;

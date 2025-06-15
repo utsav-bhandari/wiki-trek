@@ -1,14 +1,17 @@
 import { wikiUrl } from "../api/wikipedia";
 import { OutLink } from "./Svg";
+import { getSidbarNavItemId } from "./SideBarItem";
 
 function ArticleSection({ section, recurse, onTitleClick }) {
     function handleToggle({ newState, target }) {
-        const open = newState === "open";
+        console.log(target.firstChild);
+        const isOpen = newState === "open";
+        // get the summary id of the clicked detail
         const sideBarDetails = document.getElementById(
-            `nav-${target.firstChild.id}`
+            getSidbarNavItemId(target.firstChild.id)
         );
-        sideBarDetails.open = open;
-        if (open) target.scrollIntoView();
+        sideBarDetails.open = isOpen;
+        if (isOpen) target.scrollIntoView();
     }
 
     return (
@@ -21,7 +24,7 @@ function ArticleSection({ section, recurse, onTitleClick }) {
                 <summary className="links-summary" id={section.title}>
                     <h2>{section.title}</h2>
                 </summary>
-                <ul className="links-list">
+                <ul>
                     {section.links.map((link, i) => (
                         <li key={i}>
                             <a

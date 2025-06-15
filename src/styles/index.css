@@ -282,8 +282,7 @@ article ul li a {
     }
 
     #sticky-sidebar-wrapper {
-        position: static;
-        margin-block-start: 1rem;
+        display: none;
     }
 
     .page-navigator {
