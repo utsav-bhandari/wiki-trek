@@ -142,7 +142,7 @@ import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
-    // return BIG_TEST_OBJ;
+    return BIG_TEST_OBJ;
     // return SMALL_TEST_OBJ;
     // return Math.random() > 0.5 ? BIG_TEST_OBJ : SMALL_TEST_OBJ;
     const url = new URL(API_URL);

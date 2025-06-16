@@ -4,7 +4,6 @@ import { getSidbarNavItemId } from "./SideBarItem";
 
 function ArticleSection({ section, recurse, onTitleClick }) {
     function handleToggle({ newState, target }) {
-        console.log(target.firstChild);
         const isOpen = newState === "open";
         // get the summary id of the clicked detail
         const sideBarDetails = document.getElementById(

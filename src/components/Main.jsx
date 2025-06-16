@@ -93,6 +93,7 @@ function Main() {
                     <ArticleLinksBySections
                         linksBySection={linksBySection}
                         onTitleClick={loadFurtherLinks}
+                        currentPage={curPageIdx + 1}
                     />
                 )}
             </main>
