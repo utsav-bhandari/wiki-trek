@@ -36,8 +36,7 @@ function Main() {
         refetchOnWindowFocus: false,
     });
 
-    function handleSearch(formData) {
-        const query = formData.get("search");
+    function handleSearch(query) {
         setTitles([query]);
         setCurPageIdx(0);
     }

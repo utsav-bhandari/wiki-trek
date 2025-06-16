@@ -142,8 +142,8 @@ import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
-    return BIG_TEST_OBJ;
-    // return SMALL_TEST_OBJ;
+    // return BIG_TEST_OBJ;
+    return SMALL_TEST_OBJ;
     // return Math.random() > 0.5 ? BIG_TEST_OBJ : SMALL_TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();
@@ -164,3 +164,35 @@ export async function getWikiText(params) {
     // cache with calculation duh!
     return getLinksBySection(data);
 }
+
+export const getWikiSuggestions = async (searchTerm) => {
+    return [];
+    if (!searchTerm) {
+        return [];
+    }
+
+    const params = {
+        action: "opensearch",
+        format: "json",
+        search: searchTerm,
+        namespace: 0,
+        limit: 6, // at most 6 suggestions
+        origin: "*",
+    };
+
+    const url =
+        "https://en.wikipedia.org/w/api.php?" + new URLSearchParams(params);
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        // The opensearch API returns an array where the 2nd item (index 1) is the list of suggestions
+        return data[1] || [];
+    } catch (error) {
+        console.error("Failed to autocomplete:", error);
+        return [];
+    }
+};
