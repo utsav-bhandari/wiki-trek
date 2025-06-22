@@ -2,16 +2,16 @@ import { useEffect } from "react";
 import ArticleSection from "./ArticleSection";
 import wikipediaPreview from "wikipedia-preview";
 
-function ArticleLinksBySections({ linksBySection, onTitleClick, currentPage }) {
+function ArticleLinksBySections({ linksBySection, onTitleClick }) {
     console.log("RENDERING ALL LINKS...");
     // needs to detect links on every mount
     useEffect(() => {
-        console.log(`DETECTING ${currentPage}...`);
+        console.log(`DETECTING...`);
         wikipediaPreview.init({
             root: document,
             detectLinks: true,
         });
-    }, [currentPage]);
+    }, []);
 
     // top level should be the same as h2s
     const introSection = linksBySection[0];

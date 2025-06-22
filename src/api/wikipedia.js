@@ -138,7 +138,7 @@ export function getLinksBySection(data) {
     return [root];
 }
 
-import { SMALL_TEST_OBJ, BIG_TEST_OBJ } from "../lib/constants";
+import { SMALL_TEST_OBJ, BIG_TEST_OBJ, AC_TEST_OBJ } from "../lib/constants";
 
 export async function getWikiText(params) {
     console.log("FETCHING...");
@@ -166,7 +166,7 @@ export async function getWikiText(params) {
 }
 
 export const getWikiSuggestions = async (searchTerm) => {
-    return [];
+    return AC_TEST_OBJ;
     if (!searchTerm) {
         return [];
     }

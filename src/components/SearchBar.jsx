@@ -23,9 +23,6 @@ function SearchBar({ onSearch, isLoading }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e);
-
-        if (!searchTerm.trim()) return;
 
         onSearch(searchTerm);
 
@@ -56,7 +53,7 @@ function SearchBar({ onSearch, isLoading }) {
                         setShowSuggestions(true);
                     }}
                     onFocus={() => setShowSuggestions(true)}
-                    // Hide suggestions on blur, with a small delay to allow clicks
+                    // Hide suggestions on blur, with a small delay
                     onBlur={() =>
                         setTimeout(() => setShowSuggestions(false), 150)
                     }

@@ -33,6 +33,7 @@ button {
     display: flex;
     background-color: beige;
     justify-content: space-between;
+    align-items: center;
 }
 
 h1 {
@@ -73,7 +74,8 @@ a:active {
 .search-container {
     position: relative;
     inline-size: 100%;
-    max-inline-size: 500px;
+    max-inline-size: 400px;
+    /* max-inline-size: 40vw; */
 }
 
 .search-container form {
@@ -357,6 +359,10 @@ article ul li a {
 }
 
 @media (width <= 600px) {
+    h1 {
+        margin: 0 10px;
+    }
+
     main {
         display: block;
     }
@@ -396,4 +402,13 @@ article ul li a {
     --wikipediapreview-secondary-background-color: #fff !important;
     --wikipediapreview-primary-color: #202122 !important;
     --wikipediapreview-filter-setting: none !important;
+}
+
+.wikipediapreview {
+    padding-block-start: 20px;
+}
+
+/* useless */
+.wikipediapreview-header {
+    display: none !important;
 }
