@@ -28,8 +28,7 @@ button {
     color: black;
 }
 
-.main-header {
-    border: 3px solid red;
+.search-wrapper {
     display: flex;
     background-color: beige;
     justify-content: space-between;
@@ -37,13 +36,12 @@ button {
 }
 
 h1 {
-    background-color: aquamarine;
     margin-inline-start: auto;
     margin-inline-end: auto;
 }
 
 main {
-    border: 3px solid black;
+    /* border: 1px dotted black; */
     padding: 0px 2.75rem var(--navigator-height);
     display: grid;
     grid-template-columns: 12.25rem 1fr;
@@ -75,18 +73,16 @@ a:active {
     position: relative;
     inline-size: 100%;
     max-inline-size: 400px;
-    /* max-inline-size: 40vw; */
 }
 
 .search-container form {
     display: flex;
     inline-size: 100%;
-    /* border: 1px solid #ccc; */
+    border: 1px solid #ccc;
     overflow: hidden;
 }
 
 .search-container input[type="text"] {
-    border-radius: 24px 0 0 24px;
     flex-grow: 1;
     border: none;
     padding: 0.75rem 1rem;
@@ -94,19 +90,27 @@ a:active {
     outline: none;
     inline-size: 40vw;
 }
+.search-container input[type="text"]:focus {
+    border-color: #6485d1;
+    box-shadow: inset 0 0 0 1px #6485d1;
+    outline: 1px solid transparent;
+}
 
 .search-container button[type="submit"] {
     border: none;
-    background-color: #f8f9fa;
+    background-color: #36c;
+    border-color: #6485d1;
     padding: 0 1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.1s ease, color 0.1s ease, border-color 0.1s ease;
 }
 
 .search-container button[type="submit"]:hover {
-    background-color: #e9ecef;
+    background-color: #3056a9;
+    border-color: #88a3e8;
 }
 
 .search-container button[type="submit"]:disabled {
@@ -115,7 +119,7 @@ a:active {
 }
 
 .search-container button svg {
-    fill: #5f6368;
+    fill: white;
 }
 
 /* --- Suggestions List --- */
@@ -144,7 +148,7 @@ a:active {
     text-align: left;
 }
 
-.suggestions-list li:hover {
+.suggestions-list div:hover {
     background-color: #f0f0f0;
 }
 
@@ -153,11 +157,67 @@ a:active {
     border-bottom-right-radius: 16px;
 }
 
+.breadcrumb {
+    list-style: none;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #dadde3;
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    scrollbar-width: thin;
+    box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.breadcrumb li button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.95rem;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumb li button:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb li.current-page span {
+    font-weight: 600;
+    color: #343a40;
+    font-size: 0.95rem;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.breadcrumb svg {
+    color: #6c757d;
+    width: 18px;
+    height: 18px;
+}
+
 #sticky-sidebar-wrapper {
     position: sticky;
     top: 40px;
     max-block-size: calc(100vh - (40px * 3));
     overflow: hidden auto;
+    scrollbar-width: thin;
     font-size: 0.875rem;
     margin-block-start: 2.8rem;
     line-height: 1.1rem;
@@ -214,6 +274,7 @@ a:active {
 .links-sectn details[data-level="2"] {
     max-block-size: 70vh;
     overflow: auto;
+    scrollbar-width: thin;
 }
 
 details[data-level="2"][open] {
@@ -367,6 +428,7 @@ article ul li a {
     }
 
     main {
+        padding-inline: 0px;
         display: block;
     }
 
@@ -389,12 +451,6 @@ article ul li a {
 
     .page-info .page-title {
         font-size: 0.7rem;
-    }
-}
-
-@media (width <= 900px) {
-    main {
-        padding-inline: 0px;
     }
 }
 

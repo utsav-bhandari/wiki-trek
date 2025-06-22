@@ -81,7 +81,13 @@ function Main() {
 
     return (
         <>
-            <Header onSearch={handleSearch} isLoading={isLoading} />
+            <Header
+                onSearch={handleSearch}
+                isLoading={isLoading}
+                titles={titles}
+                curPageIdx={curPageIdx}
+                setCurPageIdx={setCurPageIdx}
+            />
             {error && <h2>Error fetching data: {error.message}</h2>}
             {isLoading && <div>Loading...</div>}
             <main>
@@ -92,8 +98,8 @@ function Main() {
                     <ArticleLinksBySections
                         linksBySection={linksBySection}
                         onTitleClick={loadFurtherLinks}
-                        currentPage={curPageIdx + 1}
                         titles={new Set(titles)}
+                        currentPage={curPageIdx + 1}
                     />
                 )}
             </main>
