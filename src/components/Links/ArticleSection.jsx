@@ -22,7 +22,11 @@ function ArticleSection({ section, recurse, onTitleClick, titles }) {
                 <summary className="links-summary" id={section.title}>
                     <h2>{section.title}</h2>
                 </summary>
-                <LinksList section={section} titles={titles} />
+                <LinksList
+                    section={section}
+                    titles={titles}
+                    onTitleClick={onTitleClick}
+                />
                 {recurse &&
                     section.children.map((childSection) => (
                         <ArticleSection

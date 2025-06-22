@@ -2,7 +2,7 @@ import { wikiUrl } from "../../api/wikipedia";
 import { OutLink } from "../Svg";
 import { extractTitleFromWikiHref } from "../../lib/utils";
 
-function LinksList({ section, titles }) {
+function LinksList({ section, titles, onTitleClick }) {
     return (
         <ul>
             {section.links.map((link, i) => (
