@@ -99,7 +99,7 @@ function Main() {
                         linksBySection={linksBySection}
                         onTitleClick={loadFurtherLinks}
                         titles={new Set(titles)}
-                        currentPage={curPageIdx + 1}
+                        curPage={curPageIdx + 1}
                     />
                 )}
             </main>

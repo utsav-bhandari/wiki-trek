@@ -74,6 +74,7 @@ const unrequiredSections = new Set([
     "categories",
     "footnotes",
     "acknowledgements",
+    "sources",
     "other sources",
 ]);
 
@@ -165,8 +166,8 @@ export async function getWikiText(params) {
     return getLinksBySection(data);
 }
 
-export const getWikiSuggestions = async (searchTerm) => {
-    return AC_TEST_OBJ;
+export async function getWikiSuggestions(searchTerm) {
+    // return AC_TEST_OBJ;
     if (!searchTerm) {
         return [];
     }
@@ -195,4 +196,4 @@ export const getWikiSuggestions = async (searchTerm) => {
         console.error("Failed to autocomplete:", error);
         return [];
     }
-};
+}
