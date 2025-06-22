@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getWikiSuggestions } from "../api/wikipedia";
-import { useDebounce } from "../hooks/useDebounce";
-import { Search } from "./Svg";
+import { getWikiSuggestions } from "../../api/wikipedia";
+import { useDebounce } from "../../hooks/useDebounce";
+import { Search } from "../Svg";
 
 function SearchBar({ onSearch, isLoading }) {
     console.log("RENDERING SEARCH BAR...");

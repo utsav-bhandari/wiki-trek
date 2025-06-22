@@ -1,7 +1,5 @@
-import { wikiUrl } from "../api/wikipedia";
-import { OutLink } from "./Svg";
-import { getSidbarNavItemId } from "./SideBarItem";
-import { extractTitleFromWikiHref } from "../lib/utils";
+import { getSidbarNavItemId } from "../SideBar/SideBarItem";
+import LinksList from "./LinksList";
 
 function ArticleSection({ section, recurse, onTitleClick, titles }) {
     function handleToggle({ newState, target }) {
@@ -24,26 +22,7 @@ function ArticleSection({ section, recurse, onTitleClick, titles }) {
                 <summary className="links-summary" id={section.title}>
                     <h2>{section.title}</h2>
                 </summary>
-                <ul>
-                    {section.links.map((link, i) => (
-                        <li key={i}>
-                            <a
-                                className="out-link"
-                                href={`${wikiUrl}${link.href}`}
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <OutLink />
-                            </a>
-                            <button onClick={() => onTitleClick(link.href)}>
-                                {link.text}{" "}
-                                {titles.has(
-                                    extractTitleFromWikiHref(link.href)
-                                ) && "✅"}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+                <LinksList section={section} titles={titles} />
                 {recurse &&
                     section.children.map((childSection) => (
                         <ArticleSection

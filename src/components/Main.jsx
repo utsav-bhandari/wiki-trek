@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import Header from "./Header";
-import ContentSideBar from "./ContentSideBar";
-import ArticleLinksBySections from "./ArticleLinksBySections";
+import Header from "./Header/Header";
+import ContentSideBar from "./SideBar/ContentSideBar";
+import ArticleLinksBySections from "./Links/ArticleLinksBySections";
 import PageNavigator from "./PageNavigator";
 import { getWikiText, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
 import { extractTitleFromWikiHref } from "../lib/utils";
