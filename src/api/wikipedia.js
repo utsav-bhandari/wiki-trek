@@ -111,7 +111,7 @@ export function getLinksBySection(data) {
 
             // get heading level
             const level = parseInt(tag[1]);
-            const lcaseHeading = heading.toLowerCase();
+            const lcaseHeading = heading.toLocaleLowerCase();
 
             // filter references and such sections
             if (unrequiredSections.has(lcaseHeading)) {
@@ -143,7 +143,7 @@ import { SMALL_TEST_OBJ, BIG_TEST_OBJ, AC_TEST_OBJ } from "../lib/constants";
 export async function getWikiText(params) {
     console.log("FETCHING...");
     // return BIG_TEST_OBJ;
-    return SMALL_TEST_OBJ;
+    // return SMALL_TEST_OBJ;
     // return Math.random() > 0.5 ? BIG_TEST_OBJ : SMALL_TEST_OBJ;
     const url = new URL(API_URL);
     url.search = new URLSearchParams(params).toString();

@@ -5,7 +5,6 @@ import wikipediaPreview from "wikipedia-preview";
 function ArticleLinksBySections({ linksBySection, onTitleClick, titles }) {
     console.log("RENDERING ALL LINKS...");
     // needs to detect links on every mount
-    console.log(titles);
     useEffect(() => {
         console.log(`DETECTING...`);
         wikipediaPreview.init({

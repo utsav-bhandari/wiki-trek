@@ -15,7 +15,7 @@ function Main() {
 
     const qKey =
         titles.length > 0
-            ? titles[curPageIdx].toLowerCase() // lowercased for consistency
+            ? titles[curPageIdx].toLocaleLowerCase() // lowercased for consistency
             : undefined;
     console.log("qkey: ", qKey, " page no: ", curPageIdx);
 
