@@ -1,8 +1,9 @@
 import { wikiUrl } from "../api/wikipedia";
 import { OutLink } from "./Svg";
 import { getSidbarNavItemId } from "./SideBarItem";
+import { extractTitleFromWikiHref } from "../lib/utils";
 
-function ArticleSection({ section, recurse, onTitleClick }) {
+function ArticleSection({ section, recurse, onTitleClick, titles }) {
     function handleToggle({ newState, target }) {
         const isOpen = newState === "open";
         // get the summary id of the clicked detail
@@ -35,7 +36,10 @@ function ArticleSection({ section, recurse, onTitleClick }) {
                                 <OutLink />
                             </a>
                             <button onClick={() => onTitleClick(link.href)}>
-                                {link.text}
+                                {link.text}{" "}
+                                {titles.has(
+                                    extractTitleFromWikiHref(link.href)
+                                ) && "✅"}
                             </button>
                         </li>
                     ))}
@@ -47,6 +51,7 @@ function ArticleSection({ section, recurse, onTitleClick }) {
                             section={childSection}
                             recurse={true}
                             onTitleClick={onTitleClick}
+                            titles={titles}
                         />
                     ))}
             </details>

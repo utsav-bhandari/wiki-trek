@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import ArticleSection from "./ArticleSection";
 import wikipediaPreview from "wikipedia-preview";
 
-function ArticleLinksBySections({ linksBySection, onTitleClick }) {
+function ArticleLinksBySections({ linksBySection, onTitleClick, titles }) {
     console.log("RENDERING ALL LINKS...");
     // needs to detect links on every mount
+    console.log(titles);
     useEffect(() => {
         console.log(`DETECTING...`);
         wikipediaPreview.init({
@@ -25,6 +26,7 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
                 section={introSection}
                 recurse={false} // indicates h1 level
                 onTitleClick={onTitleClick}
+                titles={titles}
             />
 
             {/* Render the rest of the sections */}
@@ -34,6 +36,7 @@ function ArticleLinksBySections({ linksBySection, onTitleClick }) {
                     section={section}
                     recurse={true}
                     onTitleClick={onTitleClick}
+                    titles={titles}
                 />
             ))}
         </section>
