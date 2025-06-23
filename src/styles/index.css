@@ -22,9 +22,6 @@ body {
 
 button {
     cursor: pointer;
-    /* -webkit-appearance: none; */
-    /* -moz-appearance: none; */
-    /* appearance: none; */
     color: black;
 }
 
@@ -52,6 +49,8 @@ a:active {
     flex-direction: row;
     justify-content: space-between;
     padding: 1rem 2rem;
+    background-color: var(--dtls-highlight-clr);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .header-nav {
@@ -538,7 +537,7 @@ article ul li button {
     text-transform: capitalize;
 }
 
-@media (width <= 700px) {
+@media (width <= 800px) {
     main {
         padding-inline: 0px;
     }
@@ -568,6 +567,10 @@ article ul li button {
 
     #sticky-sidebar-wrapper {
         display: none;
+    }
+
+    article ul {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
     .page-navigator {

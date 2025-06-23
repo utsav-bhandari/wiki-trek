@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import SearchBar from "./SearchBar";
 import Breadcrumbs from "./Breadcrumbs";
 import Modal from "../Modal"; // <-- Import the new Modal component
@@ -26,14 +26,13 @@ function Header({ onSearch, isLoading, titles, curPageIdx, setCurPageIdx }) {
         <>
             <header>
                 <div className="search-wrapper">
-                    {/* The new container for the title and nav links */}
                     <div className="header-nav">
                         <h1>WiKiTreK</h1>
                         <a href="#" onClick={handleAboutClick}>
                             About
                         </a>
                         <a
-                            href="https://github.com"
+                            href="https://github.com/utsav-bhandari/wiki-trek"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -60,15 +59,22 @@ function Header({ onSearch, isLoading, titles, curPageIdx, setCurPageIdx }) {
             >
                 <p>
                     Welcome to WikiTrek! This site lets you journey through the
-                    vast network of Wikipedia articles.
+                    vast network of Wikipedia articles through its links.
                 </p>
                 <p>
-                    Start by searching for a topic. Then, click on any link from
-                    the article to navigate deeper. Your path is tracked in the
+                    Start by searching for a topic. Hover over the link icon to
+                    preview its contents. Then, click on any card from the
+                    article to navigate deeper. Your path is tracked in the
                     breadcrumb trail above, allowing you to easily explore and
-                    backtrack on your intellectual adventure.
+                    backtrack on your adventure.
+                </p>
+                <p>
+                    Already visited topics in the current trek will have a ✅
+                    next to them for reference.
                 </p>
             </Modal>
         </>
     );
 }
+
+export default Header;
