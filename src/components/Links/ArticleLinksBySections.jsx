@@ -9,13 +9,13 @@ function ArticleLinksBySections({
     curPage,
 }) {
     console.log("RENDERING ALL LINKS...");
-    useEffect(() => {
-        console.log(`DETECTING...${curPage}`);
-        wikipediaPreview.init({
-            root: document,
-            detectLinks: true,
-        });
-    }, [curPage]);
+    // useEffect(() => {
+    //     console.log(`DETECTING...${curPage}`);
+    //     wikipediaPreview.init({
+    //         root: document,
+    //         detectLinks: true,
+    //     });
+    // }, [curPage]);
 
     // top level should be the same as h2s
     const introSection = linksBySection[0];

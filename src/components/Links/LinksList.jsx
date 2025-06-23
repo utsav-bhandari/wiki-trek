@@ -20,7 +20,6 @@ function LinksList({ section, titles, onTitleClick }) {
                         {/* The primary action is the button, covering most of the card */}
                         <button onClick={() => onTitleClick(link.href)}>
                             {link.text}
-                            {/* The "visited" checkmark is still here */}
                             {titles.has(titleFromHref) && " ✅"}
                         </button>
 
