@@ -3,14 +3,18 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "homepage": "https://utsav-bhandari.GitHub.io/wiki-trek/",
     "scripts": {
         "dev": "vite --host",
         "build": "vite build",
         "lint": "eslint .",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist",
         "preview": "vite preview"
     },
     "dependencies": {
         "@tanstack/react-query": "^5.76.2",
+        "gh-pages": "^6.3.0",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "wikipedia-preview": "^1.12.4"
