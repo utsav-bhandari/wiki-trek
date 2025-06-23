@@ -7,7 +7,7 @@ Embark on an intellectual journey through the interconnected world of Wikipedia.
 
 ---
 
-### [Live Demo Link (placeholder)](https://utsav-bhandari.github.io/wiki-trek/)
+### [Live Demo Link](https://utsav-bhandari.github.io/wiki-trek/)
 
 ![A placeholder image showing the WikiTrek application interface.](./src/assets/demo.png)
 
