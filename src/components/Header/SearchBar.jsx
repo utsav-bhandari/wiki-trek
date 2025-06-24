@@ -5,7 +5,6 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { Search } from "../Svg";
 
 function SearchBar({ onSearch, isLoading }) {
-    console.log("RENDERING SEARCH BAR...");
     const [searchTerm, setSearchTerm] = useState("");
     const [showSuggestions, setShowSuggestions] = useState(true);
 

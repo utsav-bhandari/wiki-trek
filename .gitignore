@@ -23,5 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 
-TODO.txt
 /src/lib/constants.js

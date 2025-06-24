@@ -1,8 +1,6 @@
 import SideBarItem from "./SideBarItem";
 
 function ContentSideBar({ linksBySection }) {
-    console.log("RENDERING CONTENT SIDEBAR...");
-
     const topSection = linksBySection[0];
 
     return (

@@ -8,7 +8,6 @@ import { getWikiText, DEFAULT_PARAMS_LINKS_SEARCH } from "../api/wikipedia";
 import { extractTitleFromWikiHref } from "../lib/utils";
 
 function Main() {
-    console.log("RENDERING MAIN...");
     // state vars
     const [titles, setTitles] = useState([]);
     const [curPageIdx, setCurPageIdx] = useState(undefined);
@@ -17,7 +16,6 @@ function Main() {
         titles.length > 0
             ? titles[curPageIdx].toLocaleLowerCase() // lowercased for consistency
             : undefined;
-    console.log("qkey: ", qKey, " page no: ", curPageIdx);
 
     const {
         data: linksBySection,
@@ -76,8 +74,6 @@ function Main() {
             setCurPageIdx((prevIdx) => prevIdx + 1);
         }
     }
-
-    console.log(linksBySection);
 
     return (
         <>
